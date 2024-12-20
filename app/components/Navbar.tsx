@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="relative bg-black px-6 py-8 z-30">
-        <div className="flex items-center justify-between xl:max-w-[70%] xl:m-auto">
+        <div className="flex-row-between xl:max-w-[70%] xl:m-auto">
           <div className="flex items-center gap-10">
             <Image
               src={"/assets/shared/mobile/icon-hamburger.svg"}
@@ -58,7 +58,7 @@ const Navbar = () => {
                     duration: 0.3,
                   }}
                   key={i}
-                  className="text-white uppercase tracking-widest text-[.9em] font-semibold cursor-pointer"
+                  className="text-white text-[.9em] cursor-pointer category-text"
                 >
                   {item}
                 </motion.li>
@@ -74,28 +74,35 @@ const Navbar = () => {
           />
         </div>
       </nav>
-      <AnimatePresence>
-        {openMenu && (
-          <>
-            <motion.div
-              className="absolute top-22 left-0 w-full bg-white z-30 pb-10 rounded-b-lg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="flex flex-col justify-center items-center">
-                {products.map((product) => (
-                  <CategoryCard
-                    category={product.category}
-                    image={product.image}
-                    key={product.category}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      <div className="md:hidden">
+        <AnimatePresence>
+          {openMenu && (
+            <>
+              <motion.div
+                className="absolute top-22 left-0 w-full bg-white z-30 pb-10 rounded-b-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="flex-col-center md:hidden">
+                  {products.map((product) => (
+                    <CategoryCard
+                      category={product.category}
+                      image={product.image}
+                      key={product.category}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 "
+                onClick={() => setOpenMenu(false)}
+              ></div>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 };
