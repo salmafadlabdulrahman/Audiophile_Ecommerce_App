@@ -12,7 +12,7 @@ const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   return (
     <>
-      <nav className="relative bg-black px-6 py-8 z-30">
+      <nav className="relative bg-black px-6 py-8 z-30 border-[.5px] border-b-[#3d3d3d]">
         <div className="flex-row-between xl:max-w-[70%] xl:m-auto">
           <div className="flex items-center gap-10">
             <Image
