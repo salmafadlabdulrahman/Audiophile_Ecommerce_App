@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
+import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
   title: "Audiophile",
-  description: "We offer the best tech gadgets for you and in the highest quality.",
+  description:
+    "We offer the best tech gadgets for you and in the highest quality.",
 };
 
 export default function RootLayout({
@@ -14,10 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={``}
-      >
-        {children}
+      <body className={``}>
+        <header>
+          <Navbar />
+        </header>
+        <main>{children}</main>
       </body>
     </html>
   );
