@@ -83,7 +83,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div className="flex flex-col justify-center items-center"> {/*flex justify-center gap-3 mt-4 w-[90%] m-auto */}
+              <div className="flex flex-col justify-center items-center">
                 {products.map((product) => (
                   <CategoryCard
                     category={product.category}
@@ -93,11 +93,6 @@ const Navbar = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/*<div
-              className="fixed inset-0 bg-black bg-opacity-50 "
-              onClick={() => setOpenMenu(false)}
-            ></div>*/}
           </>
         )}
       </AnimatePresence>
