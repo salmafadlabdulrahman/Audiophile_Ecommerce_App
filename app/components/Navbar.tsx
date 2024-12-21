@@ -94,11 +94,6 @@ const Navbar = () => {
                   ))}
                 </div>
               </motion.div>
-
-              <div
-                className="fixed inset-0 bg-black bg-opacity-50 "
-                onClick={() => setOpenMenu(false)}
-              ></div>
             </>
           )}
         </AnimatePresence>
