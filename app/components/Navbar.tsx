@@ -10,9 +10,10 @@ const navItems = ["Home", "Headphones", "Speakers", "Earphones"];
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+
   return (
     <>
-      <nav className="relative bg-black px-6 py-8 z-30 border-[.5px] border-b-[#3d3d3d]">
+      <nav className="relative bg-black px-6 py-8 z-[9999] border-[.5px] border-b-[#3d3d3d]">
         <div className="flex-row-between xl:max-w-[70%] xl:m-auto">
           <div className="flex items-center gap-10">
             <Image
@@ -79,13 +80,13 @@ const Navbar = () => {
           {openMenu && (
             <>
               <motion.div
-                className="absolute top-22 left-0 w-full bg-white z-30 pb-10 rounded-b-lg"
+                className="absolute top-22 left-0 w-full bg-white z-[9999] pb-10 rounded-b-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
                 <div className="flex-col-center md:hidden">
-                  {products.map((product) => (
+                  {products.map((product, i) => (
                     <CategoryCard
                       category={product.category}
                       image={product.image}
@@ -94,6 +95,11 @@ const Navbar = () => {
                   ))}
                 </div>
               </motion.div>
+
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-[999]"
+                onClick={() => setOpenMenu(false)}
+              ></div>
             </>
           )}
         </AnimatePresence>
