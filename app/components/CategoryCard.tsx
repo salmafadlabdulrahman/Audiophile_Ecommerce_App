@@ -14,11 +14,11 @@ const CategoryCard = ({ image, category }: CategoryCardProps) => {
         />
       </div>
       <div className="mt-[4em]">
-        <h2 className="text-black font-bold uppercase tracking-widest text-[.9em]">
+        <h2 className="text-black font-bold uppercase tracking-widest text-[.9em] lg:text-[1.1em]">
           {category}
         </h2>
         <div className="flex items-center gap-2 justify-center mt-3 cursor-pointer">
-          <p className="text-center text-[13px] text-darkGray category-text">
+          <p className="text-center text-[13px] text-darkGray category-text hover:text-orange">
             Shop{" "}
           </p>
           <Image
