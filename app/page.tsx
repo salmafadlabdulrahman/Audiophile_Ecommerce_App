@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <main className="w-[80%] md:w-[90%] m-auto"> 
+      <main className="w-[90%] xl:w-[75%] m-auto"> 
         <Products />
         <Banners />
       </main>

@@ -45,6 +45,21 @@ const Banners = () => {
         </div>
 
         {/*grey banner */}
+        <div className="mt-[2em] relative w-full ">
+          <Image
+            src={"/assets/home/tablet/image-speaker-zx7.jpg"}
+            alt="gray speaker"
+            width={100}
+            height={100}
+            className="w-full object-contain rounded-xl"
+            unoptimized
+          />
+
+          <div className="absolute top-[35%] left-[30px]">
+            <p className="font-bold text-[1.7em]">ZX7 SPEAKER</p>
+            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest z-[200px]" >See Product</Button>
+          </div>
+        </div>
         {/*two banners here */}
       </div>
     </div>

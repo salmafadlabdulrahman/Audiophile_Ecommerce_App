@@ -4,7 +4,7 @@ import Image from "next/image";
 const CategoryCard = ({ image, category, navbar }: CategoryCardProps) => {
   return (
     <div
-      className={`relative bg-gray rounded-lg p-4 text-center mt-[4em] ${navbar ? "w-[300px] max-w-[90%] " : "w-full "}  `} 
+      className={`relative bg-gray rounded-lg p-4 text-center mt-[4em] ${navbar ? "w-[300px] max-w-[90%] " : "w-full md:h-[180px] "}  `} 
     > 
       <div className="absolute top-[-40px] left-0 right-0">
         <Image
