@@ -91,6 +91,7 @@ const Navbar = () => {
                       category={product.category}
                       image={product.image}
                       key={product.category}
+                      navbar={true}
                     />
                   ))}
                 </div>

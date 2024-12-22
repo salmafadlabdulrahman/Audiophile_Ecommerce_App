@@ -1,9 +1,11 @@
 import { CategoryCardProps } from "@/index";
 import Image from "next/image";
 
-const CategoryCard = ({ image, category }: CategoryCardProps) => {
+const CategoryCard = ({ image, category, navbar }: CategoryCardProps) => {
   return (
-    <div className={`relative w-[300px] max-w-[90%] bg-gray rounded-lg p-4 text-center mt-[4em]`}>
+    <div
+      className={`relative bg-gray rounded-lg p-4 text-center mt-[4em] ${navbar ? "w-[300px] max-w-[90%] " : "w-full "}  `} 
+    > 
       <div className="absolute top-[-40px] left-0 right-0">
         <Image
           src={image}

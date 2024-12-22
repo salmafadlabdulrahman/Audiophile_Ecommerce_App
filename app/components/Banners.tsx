@@ -6,7 +6,7 @@ const Banners = () => {
     <div className="mt-5">
       <div className="relative">
         {/*orange banner */}
-        <div className="bg-orange text-center text-white rounded-xl relative pb-[4em] ">
+        <div className="bg-orange text-white text-center rounded-xl relative pb-[4em] ">
           <div className="lg:flex items-center justify-center gap-5 ">
             <Image
               src={"/assets/home/desktop/pattern-circles.svg"}
@@ -26,7 +26,7 @@ const Banners = () => {
               />
             </div>
 
-            <div className="lg:text-left lg:pl-5 lg:flex flex-col items-end w-[50%]">
+            <div className="lg:text-left lg:pl-5 lg:flex flex-col items-end lg:w-[50%]">
               <div>
                 <h2 className="text-[4em] font-bold mt-[1.3em] leading-[60px]">
                   ZX9 <br />
