@@ -51,16 +51,44 @@ const Banners = () => {
             alt="gray speaker"
             width={100}
             height={100}
-            className="w-full object-contain rounded-xl"
+            className="w-full object-contain rounded-xl lg:hidden"
             unoptimized
           />
 
-          <div className="absolute top-[35%] left-[30px]">
+          <Image
+            src={"/assets/home/desktop/image-speaker-zx7.jpg"}
+            alt="gray speaker"
+            width={100}
+            height={100}
+            className=" hidden lg:block w-full object-contain rounded-xl"
+            unoptimized
+          />
+
+          <div className="absolute xs:top-[20%]  sm:top-[35%] left-[30px]">
             <p className="font-bold text-[1.7em]">ZX7 SPEAKER</p>
-            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest z-[200px]" >See Product</Button>
+            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest z-[200px]">
+              See Product
+            </Button>
           </div>
         </div>
         {/*two banners here */}
+
+        <div className="flex  gap-4 mt-5"> {/*w-full */}
+          <Image
+            src={"/assets/home/mobile/image-earphones-yx1.jpg"}
+            alt="wireless headphones"
+            width={100}
+            height={100}
+            className=" w-[50%] rounded-lg"
+            unoptimized
+          /> {/*w-[45%] h-full object-cover */}
+          <div className="bg-gray rounded-lg pl-3 md:pl-[3em] pt-5 w-full flex flex-col justify-center"> {/*w-[50%] h-full */}
+            <p className="text-[1.7em] font-bold uppercase">Yx1 earphones</p>
+            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest"> {/*z-[200px] */}
+              See Product
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
