@@ -5,8 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { products } from "../../data";
 import CategoryCard from "./CategoryCard";
+import NavItems from "./NavItems";
 
-const navItems = ["Home", "Headphones", "Speakers", "Earphones"];
+//const navItems = ["Home", "Headphones", "Speakers", "Earphones"];
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -49,22 +50,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:block">
-            <ul className="flex gap-8">
-              {navItems.map((item, i) => (
-                <motion.li
-                  whileHover={{
-                    color: "#d87d41",
-                  }}
-                  transition={{
-                    duration: 0.3,
-                  }}
-                  key={i}
-                  className="text-white text-[.9em] cursor-pointer category-text"
-                >
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
+            <NavItems textSize=".9em" gap="2rem" />
           </div>
 
           <Image
