@@ -6,11 +6,12 @@ const navItems = ["Home", "Headphones", "Speakers", "Earphones"];
 interface NavItemsProps {
     textSize: string;
     gap: string;
+    flexwrap?: boolean;
 }
 
-const NavItems = ({textSize, gap}:NavItemsProps) => {
+const NavItems = ({textSize, gap, flexwrap}:NavItemsProps) => {
   return (
-    <ul className="flex" style={{gap: gap}}>
+    <ul className="flex" style={{gap: gap, flexWrap: flexwrap ? "wrap" : "nowrap"}}>
       {navItems.map((item, i) => (
         <motion.li
           whileHover={{

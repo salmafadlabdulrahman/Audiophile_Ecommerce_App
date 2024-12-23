@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8">
-          <NavItems textSize=".8em" gap="1.5rem" />
+          <NavItems textSize=".8em" gap="1.5rem" flexwrap={true} />
         </div>
       </div>
 
@@ -32,7 +32,7 @@ const Footer = () => {
 
       <div className="mt-5 flex items-center justify-between">
         <p className="text-lightGray">Copyright 2021. All Rights Reserved</p>
-        <ul className="flex items-center gap-3">
+        <ul className="flex flex-wrap items-center gap-3">
           <li>
             <Image
               src={"/assets/shared/desktop/icon-facebook.svg"}
