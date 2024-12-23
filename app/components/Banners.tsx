@@ -76,16 +76,14 @@ const Banners = () => {
             alt="wireless headphones"
             width={100}
             height={100}
-            className="xs:w-full sm:w-[50%] rounded-lg border"
+            className="xs:w-full sm:w-[50%] rounded-lg border object-cover"
             unoptimized
           />
-          <div className="bg-gray rounded-lg pl-3 md:pl-[3em] pt-5 w-full flex flex-col justify-center xs:mt-3 sm:mt-0">
+          <div className="bg-gray rounded-lg pl-3 md:pl-[3em] py-5 w-full flex flex-col justify-center xs:mt-3 sm:mt-0">
             {" "}
-            {/*w-[50%] h-full */}
             <p className="text-[1.7em] font-bold uppercase">Yx1 earphones</p>
             <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest">
               {" "}
-              {/*z-[200px] */}
               See Product
             </Button>
           </div>
