@@ -5,7 +5,6 @@ const Banners = () => {
   return (
     <div className="mt-5">
       <div className="relative">
-        {/*orange banner */}
         <div className="bg-orange text-white text-center rounded-xl relative pb-[4em] ">
           <div className="lg:flex items-center justify-center gap-5 ">
             <Image
@@ -44,7 +43,6 @@ const Banners = () => {
           </div>
         </div>
 
-        {/*grey banner */}
         <div className="mt-[2em] relative w-full ">
           <Image
             src={"/assets/home/tablet/image-speaker-zx7.jpg"}
@@ -64,27 +62,30 @@ const Banners = () => {
             unoptimized
           />
 
-          <div className="absolute xs:top-[20%]  sm:top-[35%] left-[30px]">
+          <div className="absolute xs:top-[10%] sm:top-[35%] left-[30px]">
             <p className="font-bold text-[1.7em]">ZX7 SPEAKER</p>
             <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest z-[200px]">
               See Product
             </Button>
           </div>
         </div>
-        {/*two banners here */}
 
-        <div className="flex  gap-4 mt-5"> {/*w-full */}
+        <div className="sm:flex sm:flex-row gap-4 mt-5">
           <Image
             src={"/assets/home/mobile/image-earphones-yx1.jpg"}
             alt="wireless headphones"
             width={100}
             height={100}
-            className=" w-[50%] rounded-lg"
+            className="xs:w-full sm:w-[50%] rounded-lg border"
             unoptimized
-          /> {/*w-[45%] h-full object-cover */}
-          <div className="bg-gray rounded-lg pl-3 md:pl-[3em] pt-5 w-full flex flex-col justify-center"> {/*w-[50%] h-full */}
+          />
+          <div className="bg-gray rounded-lg pl-3 md:pl-[3em] pt-5 w-full flex flex-col justify-center xs:mt-3 sm:mt-0">
+            {" "}
+            {/*w-[50%] h-full */}
             <p className="text-[1.7em] font-bold uppercase">Yx1 earphones</p>
-            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest"> {/*z-[200px] */}
+            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest">
+              {" "}
+              {/*z-[200px] */}
               See Product
             </Button>
           </div>
