@@ -12,10 +12,10 @@ const page = () => {
     <div>
       <Header category="Headphones" />
 
-      <div className="w-[90%] m-auto">
+      <div className="w-[90%] m-auto xl:w-[70%]">
         {headphones.map((item, i) => (
           <div key={i}>
-            <Product product={item} />
+            <Product product={item} index={i} />
           </div>
         ))}
         <div className="pt-[10em]">

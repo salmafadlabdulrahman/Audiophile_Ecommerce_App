@@ -6,6 +6,7 @@ export interface CategoryCardProps {
 
 export interface Item {
   product: ProductProps;
+  index: number;
 }
 
 export interface ProductProps {
