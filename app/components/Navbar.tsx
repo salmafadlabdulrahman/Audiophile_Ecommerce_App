@@ -6,8 +6,7 @@ import { useState } from "react";
 import { products } from "../../data";
 import CategoryCard from "./CategoryCard";
 import NavItems from "./NavItems";
-
-//const navItems = ["Home", "Headphones", "Speakers", "Earphones"];
+import Link from "next/link";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -41,12 +40,14 @@ const Navbar = () => {
               onClick={() => setOpenMenu((prev) => !prev)}
             />
 
-            <Image
-              src={"/assets/shared/desktop/logo.svg"}
-              alt="logo"
-              width={132}
-              height={132}
-            />
+            <Link href={"/"}>
+              <Image
+                src={"/assets/shared/desktop/logo.svg"}
+                alt="logo"
+                width={132}
+                height={132}
+              />
+            </Link>
           </div>
 
           <div className="hidden md:block">
