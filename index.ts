@@ -9,7 +9,7 @@ export interface Item {
 }
 
 export interface ProductProps {
-  image: Images;
+  categoryImage: Images;
   name: string;
   description: string;
 }

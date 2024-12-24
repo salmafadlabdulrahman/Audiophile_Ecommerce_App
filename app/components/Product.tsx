@@ -7,11 +7,19 @@ const Product = ({ product }: Item) => {
     <div className="flex flex-col items-center mt-[4em]">
       <div>
         <Image
-          src={product.image.mobile}
+          src={product.categoryImage.mobile}
           alt="name"
           width={100}
           height={100}
-          className="object-contain w-[350px] rounded-lg "
+          className="object-contain w-[350px] rounded-lg md:hidden lg:block"
+          unoptimized
+        />
+        <Image
+          src={product.categoryImage.tablet}
+          alt="name"
+          width={100}
+          height={100}
+          className="rounded-lg hidden md:block w-full lg:hidden"
           unoptimized
         />
       </div>
@@ -29,6 +37,10 @@ const Product = ({ product }: Item) => {
         <Button className="bg-orange hover:bg-black hover:text-white mt-9 w-[150px] h-[45px] uppercase font-bold tracking-widest">
           See Product
         </Button>
+      </div>
+
+      <div>
+
       </div>
     </div>
   );

@@ -28,7 +28,10 @@ const Location = () => {
         unoptimized
       />
       <div className="mt-[2em] text-center lg:text-left lg:mt-[4em] lg:pl-[2em]">
-        <p className="text-[2.5em] uppercase font-bold tracking-wide text-black">Bringing you the <br className="hidden lg:block" /><span className="text-orange">best</span> audio gear</p>
+        <p className="text-[2.5em] uppercase font-bold tracking-wide text-black">
+          Bringing you the <br className="hidden lg:block" />
+          <span className="text-orange">best</span> audio gear
+        </p>
         <p className="mt-3 text-darkGray lg:w-[90%]">
           Located at the heart of New York City, Audiophile is the premier store
           for high end headphones, earphones, speakers, and audio accessories.
