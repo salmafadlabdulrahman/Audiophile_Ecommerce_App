@@ -6,7 +6,7 @@ const Product = ({ product, index }: Item) => {
   console.log(index);
   return (
     <div className={`flex flex-col items-center mt-[4em] lg:flex-row lg:gap-[4em]`}>
-      <div className={`${index % 2 !== 0 ? "order-2" : "order-1"}`}>
+      <div className={`${index % 2 !== 0 ? "xl:order-2" : "xl:order-1"}`}>
         <Image
           src={product.categoryImage.mobile}
           alt="name"
@@ -25,7 +25,7 @@ const Product = ({ product, index }: Item) => {
         />
       </div>
 
-      <div className={`text-center lg:text-left ${index % 2 !== 0 ? "order-1" : "order-2"}`}>
+      <div className={`text-center lg:text-left ${index % 2 !== 0 ? "xl:order-1" : "xl:order-2"}`}>
         <p className="uppercase tracking-[.6em] text-orange mt-[1em]">
           New Product
         </p>
