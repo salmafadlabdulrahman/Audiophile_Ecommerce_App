@@ -2,6 +2,7 @@ export interface CategoryCardProps {
   image: string;
   category: string;
   navbar?: boolean;
+  setOpenMenu: (val: boolean) => void;
 }
 
 export interface Item {

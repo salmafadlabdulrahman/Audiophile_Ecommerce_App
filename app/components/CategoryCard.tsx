@@ -1,8 +1,10 @@
+'use client';
+
 import { CategoryCardProps } from "@/index";
 import Image from "next/image";
 import Link from "next/link";
 
-const CategoryCard = ({ image, category, navbar }: CategoryCardProps) => {
+const CategoryCard = ({ image, category, navbar, setOpenMenu }: CategoryCardProps) => {
   return (
     <div
       className={`relative bg-gray rounded-lg p-4 text-center mt-[4em] ${
@@ -22,7 +24,7 @@ const CategoryCard = ({ image, category, navbar }: CategoryCardProps) => {
         <h2 className="text-black font-bold uppercase tracking-widest text-[.9em] md:text-[1.1em]">
           {category}
         </h2>
-        <Link href={`/pages/${category.toLocaleLowerCase()}`}>
+        <Link href={`/pages/${category.toLocaleLowerCase()}`} onClick={() => setOpenMenu(false)}>
           <div className="flex items-center gap-2 justify-center mt-3 cursor-pointer">
             <p className="text-center text-[13px] text-darkGray category-text hover:text-orange">
               Shop{" "}

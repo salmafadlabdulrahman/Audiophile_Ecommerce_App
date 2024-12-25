@@ -79,6 +79,7 @@ const Navbar = () => {
                       image={product.image}
                       key={product.category}
                       navbar={true}
+                      setOpenMenu={setOpenMenu}
                     />
                   ))}
                 </div>
