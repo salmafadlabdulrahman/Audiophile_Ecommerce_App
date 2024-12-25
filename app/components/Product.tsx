@@ -1,10 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Item } from "@/index";
 import Image from "next/image";
+import Link from "next/link";
 
 const Product = ({ product, index }: Item) => {
+  //console.log(params)
   return (
-    <div className={`flex flex-col items-center mt-[4em] lg:flex-row lg:gap-[4em]`}>
+    <div
+      className={`flex flex-col items-center mt-[4em] lg:flex-row lg:gap-[4em]`}
+    >
       <div className={`${index % 2 !== 0 ? "lg:order-2" : "lg:order-1"}`}>
         <Image
           src={product.categoryImage.mobile}
@@ -24,7 +28,11 @@ const Product = ({ product, index }: Item) => {
         />
       </div>
 
-      <div className={`text-center lg:text-left ${index % 2 !== 0 ? "lg:order-1" : "lg:order-2"}`}>
+      <div
+        className={`text-center lg:text-left ${
+          index % 2 !== 0 ? "lg:order-1" : "lg:order-2"
+        }`}
+      >
         <p className="uppercase tracking-[.6em] text-orange mt-[1em]">
           New Product
         </p>
@@ -34,9 +42,11 @@ const Product = ({ product, index }: Item) => {
         <p className="mt-[1.5em] text-darkGray w-[80%] m-auto lg:m-0 lg:mt-[1em]">
           {product.description}
         </p>
-        <Button className="bg-orange hover:bg-black hover:text-white mt-9 w-[150px] h-[45px] uppercase font-bold tracking-widest">
-          See Product
-        </Button>
+        <Link href={``}>
+          <Button className="bg-orange hover:bg-black hover:text-white mt-9 w-[150px] h-[45px] uppercase font-bold tracking-widest">
+            See Product
+          </Button>
+        </Link>
       </div>
     </div>
   );
