@@ -14,6 +14,8 @@ export interface ProductProps {
   categoryImage: Images;
   name: string;
   description: string;
+  id:number;
+  category: string;
 }
 
 export interface Images {

@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [cartMenu, setCartMenu] = useState(true);
+  const [cartMenu, setCartMenu] = useState(false);
 
   return (
     <>
