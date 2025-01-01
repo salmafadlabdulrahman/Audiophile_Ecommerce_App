@@ -7,6 +7,7 @@ import { products } from "../../data";
 import CategoryCard from "./CategoryCard";
 import NavItems from "./NavItems";
 import Link from "next/link";
+import ProductAmount from "./ProductAmount";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -123,15 +124,7 @@ const Navbar = () => {
                   <span className="text-darkGray font-bold">$ 4,500</span>
                 </p>
 
-                <div className="bg-gray flex items-center justify-between w-[110px] h-[40px]">
-                  <button className="hover:text-orange w-[50px] h-full hover:bg-[#a7a7a7]">
-                    -
-                  </button>
-                  <p className="font-bold">1</p>
-                  <button className="hover:text-orange w-[50px] h-full hover:bg-[#a7a7a7]">
-                    +
-                  </button>
-                </div>
+                <ProductAmount />
               </div>
             </div>
             <div className="mt-5">
