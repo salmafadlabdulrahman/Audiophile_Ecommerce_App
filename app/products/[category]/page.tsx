@@ -3,7 +3,15 @@ import Product from "@/app/components/Product";
 import Products from "@/app/components/Products";
 import data from "@/products.json";
 
-async function Page({ params }: { params: { category: string } }) {
+import { FC } from 'react';
+
+interface PageProps {
+  params: {
+    category: string;
+  };
+}
+
+const Page: FC<PageProps> = async ({ params }) => {
   const { category } = await params;
   const product = data.products.filter((item) => item.category === category);
 
