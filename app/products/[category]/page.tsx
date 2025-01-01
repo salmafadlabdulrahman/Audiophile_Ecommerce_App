@@ -11,7 +11,9 @@ interface PageProps {
   };
 }
 
-const Page: FC<PageProps> = async ({ params }) => {
+export type ParamsType = Promise<{ category: string }>;
+
+export default async function Page({ params }: { params: ParamsType }) {
   const { category } = await params;
   const product = data.products.filter((item) => item.category === category);
 
@@ -33,4 +35,4 @@ const Page: FC<PageProps> = async ({ params }) => {
   );
 }
 
-export default Page;
+//export default Page;
