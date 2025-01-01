@@ -17,7 +17,7 @@ const NavItems = ({ textSize, gap, flexwrap }: NavItemsProps) => {
       style={{ gap: gap, flexWrap: flexwrap ? "wrap" : "nowrap" }}
     >
       {navItems.map((item, i) => (
-        <Link href={`${item === "Home" ? "/" : `/pages/${item}` }`} key={i}>
+        <Link href={`${item === "home" ? "/" : `/products/${item}` }`} key={i}>
           <motion.li
             whileHover={{
               color: "#d87d41",
