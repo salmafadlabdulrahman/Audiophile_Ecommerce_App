@@ -3,14 +3,6 @@ import Product from "@/app/components/Product";
 import Products from "@/app/components/Products";
 import data from "@/products.json";
 
-import { FC } from 'react';
-
-interface PageProps {
-  params: {
-    category: string;
-  };
-}
-
 export type ParamsType = Promise<{ category: string }>;
 
 export default async function Page({ params }: { params: ParamsType }) {
@@ -34,5 +26,3 @@ export default async function Page({ params }: { params: ParamsType }) {
     </div>
   );
 }
-
-//export default Page;
