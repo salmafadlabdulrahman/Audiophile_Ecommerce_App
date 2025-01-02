@@ -1,3 +1,4 @@
+import GoBackLink from "@/app/components/GoBackLink";
 import ProductAmount from "@/app/components/ProductAmount";
 import Products from "@/app/components/Products";
 import { Button } from "@/components/ui/button";
@@ -5,22 +6,15 @@ import data from "@/products.json";
 import Image from "next/image";
 import Link from "next/link";
 
-export type ParamsType = Promise<{ name: string; category: string }>;
+export type ParamsType = Promise<{ name: string; }>;
 
 const page = async ({ params }: { params: ParamsType }) => {
-  const { category, name } = await params;
-  const item = data.products.filter(
-    (item) => item.slug === name
-  )[0];
+  const { name } = await params;
+  const item = data.products.filter((item) => item.slug === name)[0];
 
   return (
     <div className="w-[95%] m-auto mt-[2em]">
-      <Link
-        href={`/products/${category}`}
-        className="text-lightBlack tracking-wide font-semibold text-[1.1em]"
-      >
-        Go Back
-      </Link>
+      <GoBackLink />
       <div className="pt-[2em] flex flex-col items-center text-center md:flex-row md:gap-4 lg:gap-8 lg:max-w-[85%] xl:max-w-[75%] lg:m-auto lg:items-start">
         <Image
           src={item.categoryImage.mobile}
