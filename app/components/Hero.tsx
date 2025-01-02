@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -22,13 +23,15 @@ const Hero = () => {
             HEADPHONES
           </h1>
           <p className="text-lightGray mt-9 tracking-wide w-[90%] lg:w-full m-auto lg:m-0 lg:mt-6">
-            Experience natural, lifelike audio and exceptional build{" "}
-            <br className="" />
+            Experience natural, lifelike audio and exceptional build <br />
             quality made for the passionate music enthusiast.
           </p>
-          <Button className="bg-orange hover:bg-white hover:text-black mt-9 w-[150px] h-[45px] uppercase font-bold tracking-widest  "> {/* */}
-            See Product
-          </Button>
+          <Link href="/products/headphones/xx99-mark-two-headphones">
+            <Button className="bg-orange hover:bg-white hover:text-black mt-9 w-[150px] h-[45px] uppercase font-bold tracking-widest  ">
+              {" "}
+              See Product
+            </Button>
+          </Link>
         </div>
         <div className="w-full">
           <Image

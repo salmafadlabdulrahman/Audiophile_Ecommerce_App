@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Banners = () => {
   return (
@@ -35,9 +36,11 @@ const Banners = () => {
                   Upgrade to premium speakers that are phenomenally built
                   <br /> to deliver truly remarkable sound.
                 </p>
-                <Button className="bg-black text-white mt-[2em] w-[150px] h-[45px] uppercase font-bold tracking-widest z-[200px] relative">
-                  See Product
-                </Button>
+                <Link href={"/products/speakers/zx9-speaker"}>
+                  <Button className="bg-black text-white mt-[2em] w-[150px] h-[45px] uppercase font-bold tracking-widest z-[200px] relative">
+                    See Product
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -64,9 +67,11 @@ const Banners = () => {
 
           <div className="absolute xs:top-[10%] sm:top-[35%] left-[30px]">
             <p className="font-bold text-[1.7em]">ZX7 SPEAKER</p>
-            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest z-[200px]">
-              See Product
-            </Button>
+            <Link href={"/products/speakers/zx7-speaker"}>
+              <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest z-[200px]">
+                See Product
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -82,10 +87,12 @@ const Banners = () => {
           <div className="bg-gray rounded-lg pl-3 md:pl-[3em] py-5 w-full flex flex-col justify-center xs:mt-3 sm:mt-0">
             {" "}
             <p className="text-[1.7em] font-bold uppercase">Yx1 earphones</p>
-            <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest">
-              {" "}
-              See Product
-            </Button>
+            <Link href={"/products/earphones/yx1-earphones"}>
+              <Button className="bg-transparent text-black hover:text-white border mt-[1.5em] w-[180px] h-[45px] uppercase font-bold tracking-widest">
+                {" "}
+                See Product
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
