@@ -45,9 +45,9 @@ const page = async ({ params }: { params: ParamsType }) => {
           <p className="mt-[1em] text-darkGray sm:max-w-[80%] md:max-w-full m-auto">
             {item.description}
           </p>
-          <div className="flex items-center justify-between mt-[2em] md:mt-[4em] lg:mt-[6em] xl:mt-[10em]">
+          <div className="xs:flex-col sm:flex-row  flex items-center justify-between mt-[2em] md:mt-[4em] lg:mt-[6em] xl:mt-[10em]">
             <p className="font-semibold text-[1.3em]">$ {item.price}</p>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 xs:mt-[1.5em] sm:mt-0">
               <ProductAmount />
               <Button className="uppercase font-semibold tracking-wider h-[40px]">
                 Add To Cart
