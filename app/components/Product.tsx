@@ -41,7 +41,7 @@ const Product = ({ product, index }: Item) => {
         <p className="mt-[1.5em] text-darkGray w-[80%] m-auto lg:m-0 lg:mt-[1em]">
           {product.description}
         </p>
-        <Link href={`${product.category}/${product.id}`}>
+        <Link href={`${product.category}/${product.slug}`}>
         <Button className="bg-orange hover:bg-black hover:text-white mt-9 w-[150px] h-[45px] uppercase font-bold tracking-widest">
           See Product
         </Button>

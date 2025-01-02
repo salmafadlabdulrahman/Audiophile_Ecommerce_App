@@ -16,6 +16,7 @@ export interface ProductProps {
   description: string;
   id:number;
   category: string;
+  slug: string;
 }
 
 export interface Images {
