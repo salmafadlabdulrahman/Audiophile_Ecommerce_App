@@ -21,7 +21,7 @@ const page = async ({ params }: { params: ParamsType }) => {
       >
         Go Back
       </Link>
-      <div className="pt-[2em] flex sm:flex-col items-center text-center md:flex-row md:gap-4 lg:gap-8 lg:max-w-[85%] xl:max-w-[75%] lg:m-auto lg:items-start">
+      <div className="pt-[2em] flex flex-col items-center text-center md:flex-row md:gap-4 lg:gap-8 lg:max-w-[85%] xl:max-w-[75%] lg:m-auto lg:items-start">
         <Image
           src={item.categoryImage.mobile}
           alt={item.name}
