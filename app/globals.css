@@ -31,6 +31,19 @@ body {
     justify-content: center;
     align-items: center;
   }
+
+  .form-header {
+    text-transform: uppercase;
+    color:#d87d41;
+    letter-spacing: 0.025em;
+    font-weight: 700;
+    font-size: .9em;
+  }
+
+  .radio-btn {
+    height: 50px;
+    padding-left: 0.75rem;
+  }
 }
 
 @layer base {
