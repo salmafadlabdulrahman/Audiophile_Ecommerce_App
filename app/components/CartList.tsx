@@ -10,7 +10,7 @@ interface CartListProps {
 const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
   return (
     <>
-      <div className="bg-white absolute top-[20px] z-[999999] right-[20px] w-[90%] max-w-[350px] px-8 py-5 rounded-lg ">
+      <div className="bg-white absolute top-[20px] z-[999999] right-[20px] lg:right-[17%] w-[90%] max-w-[350px] px-8 py-5 rounded-lg ">
         <div className="flex items-center justify-between">
           <p className="uppercase font-bold tracking-wide text-[1.2em]">
             Cart (3)
@@ -18,7 +18,7 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
           <button className="tracking-wider text-darkGray">Remove All</button>
         </div>
         <div className="mt-5">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-row items-center sm:gap-5 justify-between">
             <Image
               src={"/assets/cart/image-xx59-headphones.jpg"}
               alt="headphones"
@@ -26,38 +26,13 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
               height={70}
               className="rounded-lg"
             />
+            <div className="flex sm:flex-row sm:justify-between sm:w-full sm:items-center xs:flex-col">
+              <p className="text-center">
+                <span className="font-semibold ">ZX9</span> <br />{" "}
+                <span className="text-darkGray font-bold">$ 4,500</span>
+              </p>
 
-            <p className="text-center">
-              <span className="font-semibold ">ZX9</span> <br />{" "}
-              <span className="text-darkGray font-bold">$ 4,500</span>
-            </p>
-
-            <ProductAmount />
-          </div>
-        </div>
-        <div className="mt-5">
-          <div className="flex items-center justify-between">
-            <Image
-              src={"/assets/cart/image-xx59-headphones.jpg"}
-              alt="headphones"
-              width={70}
-              height={70}
-              className="rounded-lg"
-            />
-
-            <p className="text-center">
-              <span className="font-semibold ">ZX9</span> <br />{" "}
-              <span className="text-darkGray font-bold">$ 4,500</span>
-            </p>
-
-            <div className="bg-gray flex items-center justify-between  w-[110px] h-[40px]">
-              <button className="hover:text-orange w-[50px] h-full hover:bg-[#a7a7a7]">
-                -
-              </button>
-              <p className="font-bold ">1</p>
-              <button className="hover:text-orange w-[50px] h-full hover:bg-[#a7a7a7]">
-                +
-              </button>
+              <ProductAmount />
             </div>
           </div>
         </div>
@@ -73,8 +48,8 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-[999]"
         onClick={() => {
-            setOpenMenu(false);
-            setCartMenu(false)
+          setOpenMenu(false);
+          setCartMenu(false);
         }}
       ></div>
     </>
