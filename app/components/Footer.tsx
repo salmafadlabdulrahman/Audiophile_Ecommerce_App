@@ -5,10 +5,6 @@ import Location from "./Location";
 const Footer = () => {
   return (
     <>
-      <div className="w-[90%] xl:w-[75%] m-auto">
-        <Location />
-      </div>
-
       <footer className="bg-black mt-[3em] pb-[2em] px-5">
         <div className="lg:flex items-center justify-between">
           <div className="w-[135px] border-t-4 border-t-orange">

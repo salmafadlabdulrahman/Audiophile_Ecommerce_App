@@ -10,7 +10,9 @@ export default function Home() {
       <main className="w-[90%] xl:w-[75%] m-auto">
         <Products />
         <Banners />
+        <Location />
       </main>
+
     </div>
   );
 }

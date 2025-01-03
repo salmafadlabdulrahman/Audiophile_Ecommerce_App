@@ -1,4 +1,5 @@
 import Header from "@/app/components/Header";
+import Location from "@/app/components/Location";
 import Product from "@/app/components/Product";
 import Products from "@/app/components/Products";
 import data from "@/products.json";
@@ -22,6 +23,8 @@ export default async function Page({ params }: { params: ParamsType }) {
         <div className="pt-[10em]">
           <Products />
         </div>
+
+        <Location />
       </div>
     </div>
   );

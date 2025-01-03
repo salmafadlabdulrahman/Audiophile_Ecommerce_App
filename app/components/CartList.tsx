@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ProductAmount from "./ProductAmount";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface CartListProps {
   setOpenMenu: (val: boolean) => void;
@@ -41,9 +42,17 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
           <p className="uppercase text-darkGray">Total</p>
           <p className="font-semibold text-[1.1em]">$ 28,195</p>
         </div>
-        <Button className="bg-orange text-white uppercase font-bold w-full text-[1em] h-[45px] tracking-wide mt-[2em]">
-          Checkout
-        </Button>
+        <Link href={"/checkout"}>
+          <Button
+            className="bg-orange text-white uppercase font-bold w-full text-[1em] h-[45px] tracking-wide mt-[2em]"
+            onClick={() => {
+              setOpenMenu(false);
+              setCartMenu(false);
+            }}
+          >
+            Checkout
+          </Button>
+        </Link>
       </div>
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-[999]"

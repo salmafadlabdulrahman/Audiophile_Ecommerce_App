@@ -1,4 +1,5 @@
 import GoBackLink from "@/app/components/GoBackLink";
+import Location from "@/app/components/Location";
 import ProductAmount from "@/app/components/ProductAmount";
 import Products from "@/app/components/Products";
 import { Button } from "@/components/ui/button";
@@ -137,6 +138,7 @@ const page = async ({ params }: { params: ParamsType }) => {
         </div>
 
         <Products />
+        <Location />
       </div>
     </div>
   );
