@@ -84,17 +84,14 @@ const page = () => {
   return (
     <div className="p-6 bg-gray">
       <GoBackLink />
-      <div className="bg-white rounded-lg p-4 mt-[1.5em]">
-        <p className="uppercase font-bold tracking-wide text-[1.5em]">
-          Checkout
-        </p>
-        <div className="mt-[1.3em]">
-          <div>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
-              >
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <div className="bg-white rounded-lg p-4 mt-[1.5em] pb-[2em]">
+            <p className="uppercase font-bold tracking-wide text-[1.5em]">
+              Checkout
+            </p>
+            <div className="mt-[1.3em]">
+              <div>
                 <div className="mt-2">
                   <p className="form-header">Billing Details</p>
                   <div className="sm:flex sm:flex-row sm:items-center sm:gap-3 mt-[1em]">
@@ -278,15 +275,19 @@ const page = () => {
                     </div>
                   )}
                 </div>
-
-                <Button type="submit">Submit</Button>
-              </form>
-            </Form>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+
+          <div className="bg-white rounded-lg p-4">
+            <p className="uppercase font-bold tracking-widest text-[1.2em]">Summary</p>
+          </div>
+        </form>
+      </Form>
     </div>
   );
 };
 
 export default page;
+
+//<Button type="submit">Submit</Button>

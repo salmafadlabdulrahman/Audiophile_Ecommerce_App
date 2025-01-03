@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Location = () => {
   return (
-    <div className="mt-[6em] lg:flex gap-[2em] ">
+    <div className="mt-[6em] lg:flex gap-[2em] pb-[3em] ">
       <Image
         src={"/assets/shared/mobile/image-best-gear.jpg"}
         alt="a guy wearing headphones"

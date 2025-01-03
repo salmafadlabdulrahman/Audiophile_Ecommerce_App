@@ -4,8 +4,8 @@ import Location from "./Location";
 
 const Footer = () => {
   return (
-    <>
-      <footer className="bg-black mt-[3em] pb-[2em] px-5">
+    <div className="bg-black">
+      <footer className="pb-[2em] px-5">
         <div className="lg:flex items-center justify-between">
           <div className="w-[135px] border-t-4 border-t-orange">
             <Image
@@ -22,7 +22,6 @@ const Footer = () => {
             <NavItems textSize=".8em" gap="1.5rem" flexwrap={true} />
           </div>
         </div>
-
         <div className="text-lightGray mt-[2em] w-[90%] lg:w-[50%]">
           <p>
             Audiophile is an all in one stop to fulfill your audio needs. We're
@@ -31,7 +30,6 @@ const Footer = () => {
             our demo facility - we’re open 7 days a week.
           </p>
         </div>
-
         <div className="mt-5 flex items-center justify-between">
           <p className="text-lightGray">Copyright 2021. All Rights Reserved</p>
           <ul className="flex flex-wrap items-center gap-3">
@@ -61,8 +59,8 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-      </footer>
-    </>
+      </footer>{" "}
+    </div>
   );
 };
 
