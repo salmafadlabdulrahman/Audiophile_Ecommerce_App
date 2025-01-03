@@ -83,10 +83,18 @@ const page = () => {
   }
   return (
     <div className="p-6 bg-gray">
-      <GoBackLink />
+      <div className="lg:pl-[5%]">
+        <GoBackLink />
+      </div>
+
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="bg-white rounded-lg p-4 mt-[1.5em] pb-[2em]">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="lg:w-[80%] lg:m-auto lg:flex lg:justify-between"
+        >
+          {" "}
+          {/*space-y-8 */}
+          <div className="bg-white rounded-lg p-4 mt-[1.5em] pb-[2em] lg:w-[60%]">
             <p className="uppercase font-bold tracking-wide text-[1.5em]">
               Checkout
             </p>
@@ -137,7 +145,7 @@ const page = () => {
                   />
                 </div>
 
-                <div>
+                <div className="mt-[2em]">
                   <p className="form-header">Shipping Info</p>
                   <div>
                     <FormField
@@ -201,12 +209,12 @@ const page = () => {
                   </div>
                 </div>
 
-                <div>
+                <div className="mt-[2em]">
                   <p className="form-header">Payement Details</p>
                   <div className="sm:flex sm:justify-between mt-[1em]">
                     <p className="font-bold text-[.8em]">Payement Method</p>
 
-                    <div className="w-[50%]">
+                    <div className="sm:w-[50%] xs:w-full">
                       <RadioGroup
                         defaultValue={paymentMethod}
                         onChange={() => {
@@ -278,9 +286,98 @@ const page = () => {
               </div>
             </div>
           </div>
+          <div className="bg-white rounded-lg p-4 pb-[2em] lg:w-[35%] mt-[1.5em] lg:h-[50%]">
+            <p className="uppercase font-bold tracking-widest text-[1.2em]">
+              Summary
+            </p>
 
-          <div className="bg-white rounded-lg p-4">
-            <p className="uppercase font-bold tracking-widest text-[1.2em]">Summary</p>
+            <div className="mt-[1em]">
+              <div className="flex justify-between mb-5">
+                <div className="flex gap-6">
+                  <Image
+                    src={"/assets/cart/image-xx59-headphones.jpg"}
+                    alt="headphones"
+                    width={50}
+                    height={50}
+                    unoptimized
+                    className="w-[60px] rounded-lg"
+                  />
+
+                  <div>
+                    <p className="font-bold">ZX9</p>
+                    <p className="text-darkGray font-bold">$ 4.500</p>
+                  </div>
+                </div>
+                <p className="text-darkGray font-bold">x3</p>
+              </div>
+
+              <div className="flex justify-between">
+                <div className="flex gap-6">
+                  <Image
+                    src={"/assets/cart/image-xx59-headphones.jpg"}
+                    alt="headphones"
+                    width={50}
+                    height={50}
+                    unoptimized
+                    className="w-[60px] rounded-lg"
+                  />
+
+                  <div>
+                    <p className="font-bold">ZX9</p>
+                    <p className="text-darkGray font-bold">$ 4.500</p>
+                  </div>
+                </div>
+                <p className="text-darkGray font-bold">x3</p>
+              </div>
+
+              <div className="flex justify-between my-5">
+                <div className="flex gap-6">
+                  <Image
+                    src={"/assets/cart/image-xx59-headphones.jpg"}
+                    alt="headphones"
+                    width={50}
+                    height={50}
+                    unoptimized
+                    className="w-[60px] rounded-lg"
+                  />
+
+                  <div>
+                    <p className="font-bold">ZX9</p>
+                    <p className="text-darkGray font-bold">$ 4.500</p>
+                  </div>
+                </div>
+                <p className="text-darkGray font-bold">x3</p>
+              </div>
+            </div>
+
+            <div className="mt-[2em]">
+              <p className="flex justify-between ">
+                <span className="summary-text">Total</span>{" "}
+                <span className=" summary-amounts">$ 23,698</span>
+              </p>
+              <p className="flex justify-between ">
+                <span className="summary-text">Shipping</span>{" "}
+                <span className=" summary-amounts">$ 50</span>
+              </p>
+              <p className="flex justify-between ">
+                <span className="summary-text">Vat (included)</span>{" "}
+                <span className=" summary-amounts">$ 4,739.6</span>
+              </p>
+
+              <p className="flex justify-between mt-[1.5em]">
+                <span className="summary-text">Grand Total</span>{" "}
+                <span className=" summary-amounts">$ 28487.6</span>
+              </p>
+            </div>
+
+            <div className="mt-[3em] ">
+              <Button
+                type="submit"
+                className="bg-orange text-white w-full uppercase text-[1em] font-semibold tracking-wide"
+              >
+                Continue & Pay
+              </Button>
+            </div>
           </div>
         </form>
       </Form>
@@ -289,5 +386,6 @@ const page = () => {
 };
 
 export default page;
-
+//uppercase tracking-wide text-darkGray text-[1.1em]
+//font-bold text-[1.2em]
 //<Button type="submit">Submit</Button>

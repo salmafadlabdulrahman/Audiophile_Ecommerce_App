@@ -44,6 +44,18 @@ body {
     height: 50px;
     padding-left: 0.75rem;
   }
+
+  .summary-text {
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: #00000080;
+    font-size: 1em;
+  }
+
+  .summary-amounts {
+    font-weight: 700;
+    font-size: 1.2em;
+  }
 }
 
 @layer base {
