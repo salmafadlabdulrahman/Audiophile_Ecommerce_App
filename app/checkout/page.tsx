@@ -20,49 +20,73 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 import Image from "next/image";
 
-const formSchema = z.object({
-  name: z
-    .string()
-    .nonempty({ message: "Field Cannot be empty" })
-    .min(2, { message: "Name must be 2 or more characters long." })
-    .max(20, { message: "Name must be 20 characters or less" }),
-  emailaddress: z
-    .string()
-    .nonempty({ message: "Field Cannot be empty" })
-    .email({ message: "Invalid email address" }),
-  phonenumber: z.string().nonempty({ message: "Field Cannot be empty" }),
-  address: z.string().nonempty({ message: "Field Cannot be empty" }),
-  zipcode: z
-    .union([
-      z
-        .string()
-        .regex(/^\d*$/, { message: "Field Cannot be empty" })
-        .transform((val) => (val === "" ? undefined : parseInt(val, 10))),
-      z.number(),
-    ])
-    .refine((val) => val === undefined || !isNaN(val), {
-      message: "Field Cannot be empty",
-    }),
-  city: z.string().nonempty({ message: "Field Cannot be empty" }),
-  country: z.string().nonempty({ message: "Field Cannot be empty" }),
-  eMoneyNumber: z.preprocess(
-    (val) => (val === "" || val === undefined ? undefined : Number(val)),
-    z.number().refine((val) => val !== undefined && !isNaN(val), {
-      message: "Field cannot be empty",
-    })
-  ),
-  eMoneyPin: z.preprocess(
-    (val) => (val === "" || val === undefined ? undefined : Number(val)),
-    z.number().refine((val) => val !== undefined && !isNaN(val), {
-      message: "Field cannot be empty",
-    })
-  ),
-});
-
 const page = () => {
   const [paymentMethod, setPaymentMethod] = useState("option-one");
+
+  const formSchema = z.object({
+    name: z
+      .string()
+      .nonempty({ message: "Field Cannot be empty" })
+      .min(2, { message: "Name must be 2 or more characters long." })
+      .max(20, { message: "Name must be 20 characters or less" }),
+    emailaddress: z
+      .string()
+      .nonempty({ message: "Field Cannot be empty" })
+      .email({ message: "Invalid email address" }),
+    phonenumber: z.string().nonempty({ message: "Field Cannot be empty" }),
+    address: z.string().nonempty({ message: "Field Cannot be empty" }),
+    zipcode: z
+      .union([
+        z
+          .string()
+          .regex(/^\d*$/, { message: "Field Cannot be empty" })
+          .transform((val) => (val === "" ? undefined : parseInt(val, 10))),
+        z.number(),
+      ])
+      .refine((val) => val === undefined || !isNaN(val), {
+        message: "Field Cannot be empty",
+      }),
+    city: z.string().nonempty({ message: "Field Cannot be empty" }),
+    country: z.string().nonempty({ message: "Field Cannot be empty" }),
+    eMoneyNumber: z.preprocess(
+      (val) => (val === "" || val === undefined ? undefined : Number(val)),
+      z
+        .number()
+        .refine((val) => val !== undefined && !isNaN(val), {
+          message: "Field cannot be empty",
+        })
+        .optional()
+        .superRefine((val, ctx) => {
+          if (paymentMethod === "option-one" && !val) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: "E-money number is required for e-money payment",
+            });
+          }
+        })
+    ),
+    eMoneyPin: z.preprocess(
+      (val) => (val === "" || val === undefined ? undefined : Number(val)),
+      z
+        .number()
+        .refine((val) => val !== undefined && !isNaN(val), {
+          message: "Field cannot be empty",
+        })
+        .optional()
+        .superRefine((val, ctx) => {
+          if (paymentMethod === "option-one" && !val) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: "E-money PIN is required for e-money payment",
+            });
+          }
+        })
+    ),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    context: { paymentMethod },
     defaultValues: {
       name: "",
       emailaddress: "",
@@ -386,6 +410,3 @@ const page = () => {
 };
 
 export default page;
-//uppercase tracking-wide text-darkGray text-[1.1em]
-//font-bold text-[1.2em]
-//<Button type="submit">Submit</Button>
