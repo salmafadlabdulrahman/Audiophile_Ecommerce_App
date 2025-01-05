@@ -1,6 +1,7 @@
 import Image from "next/image";
 import MiniProductCard from "./MiniProductCard";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const ConfirmedCard = () => {
   return (
@@ -34,9 +35,11 @@ const ConfirmedCard = () => {
             <p className="summary-amounts text-white">$ 14,698</p>
           </div>
         </div>
-        <Button className="w-full mt-[2em] bg-orange uppercase tracking-wide font-semibold text-[1em]">
-          Back To Home
-        </Button>
+        <Link href="/">
+          <Button className="w-full mt-[2em] bg-orange uppercase tracking-wide font-semibold text-[1em]">
+            Back To Home
+          </Button>
+        </Link>
       </div>
     </div>
   );
