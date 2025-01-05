@@ -26,7 +26,8 @@ export default {
 			"xs": "300px",
 			"sm": "390px",
 			"pre-md": "740px",
-			"md": "768px"
+			"md": "768px",
+			"pre-lg": "850px"
 		}
   	}
   },

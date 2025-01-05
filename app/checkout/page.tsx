@@ -23,8 +23,8 @@ import MiniProductCard from "../components/MiniProductCard";
 
 const page = () => {
   const [paymentMethod, setPaymentMethod] = useState("option-one");
-  const [orderConfirmed, setOrderConfirmed] = useState(true);
-  const [openMenu, setOpenMenu] = useState(true);
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const formSchema = z.object({
     name: z

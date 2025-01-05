@@ -8,6 +8,7 @@ import CategoryCard from "./CategoryCard";
 import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -24,7 +25,7 @@ const Navbar = () => {
               width={18}
               height={18}
               unoptimized
-              className={`md:hidden cursor-pointer ${
+              className={`pre-lg:hidden cursor-pointer ${
                 openMenu ? "hidden" : "block"
               }`}
               onClick={() => setOpenMenu((prev) => !prev)}
@@ -36,7 +37,7 @@ const Navbar = () => {
               width={18}
               height={18}
               unoptimized
-              className={`md:hidden cursor-pointer ${
+              className={`pre-lg:hidden cursor-pointer ${
                 openMenu ? "block" : "hidden"
               }`}
               onClick={() => setOpenMenu((prev) => !prev)}
@@ -52,21 +53,32 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden pre-lg:block">
             <NavItems textSize=".9em" gap="2rem" />
           </div>
 
-          <Image
-            src={"/assets/shared/desktop/icon-cart.svg"}
-            alt="cart icon"
-            width={25}
-            height={25}
-            onClick={() => setCartMenu((prev) => !prev)}
-            className="cursor-pointer"
-          />
+          <div className="hidden">
+            <Image
+              src={"/assets/shared/desktop/icon-cart.svg"}
+              alt="cart icon"
+              width={25}
+              height={25}
+              onClick={() => setCartMenu((prev) => !prev)}
+              className="cursor-pointer"
+            />
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black"> 
+              Sign In
+            </Button>
+            <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
+              Sign Up
+            </Button>
+          </div>
         </div>
       </nav>
-      <div className="md:hidden">
+      <div className="pre-lg:hidden">
         <AnimatePresence>
           {openMenu && (
             <>
@@ -76,7 +88,7 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <div className="flex-col-center md:hidden">
+                <div className="flex-col-center pre-lg:hidden">
                   {products.map((product, i) => (
                     <CategoryCard
                       category={product.category}
@@ -99,7 +111,9 @@ const Navbar = () => {
       </div>
 
       <div className="relative">
-        {cartMenu && <CartList setOpenMenu={setOpenMenu} setCartMenu={setCartMenu} />}
+        {cartMenu && (
+          <CartList setOpenMenu={setOpenMenu} setCartMenu={setCartMenu} />
+        )}
       </div>
     </>
   );
