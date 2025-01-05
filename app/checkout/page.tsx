@@ -20,6 +20,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ConfirmedCard from "../components/ConfirmedCard";
 import MiniProductCard from "../components/MiniProductCard";
+import Footer from "../components/Footer";
 
 const page = () => {
   const [paymentMethod, setPaymentMethod] = useState("option-one");
@@ -379,6 +380,7 @@ const page = () => {
           <ConfirmedCard />
         </div>
       )}
+      <Footer />
     </>
   );
 };

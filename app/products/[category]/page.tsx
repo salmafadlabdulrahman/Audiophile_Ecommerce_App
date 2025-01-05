@@ -1,3 +1,4 @@
+import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import Location from "@/app/components/Location";
 import Product from "@/app/components/Product";
@@ -26,6 +27,7 @@ export default async function Page({ params }: { params: ParamsType }) {
 
         <Location />
       </div>
+      <Footer />
     </div>
   );
 }

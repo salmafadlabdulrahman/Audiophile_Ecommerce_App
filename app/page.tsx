@@ -1,4 +1,5 @@
 import Banners from "./components/Banners";
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Location from "./components/Location";
 import Products from "./components/Products";
@@ -12,7 +13,7 @@ export default function Home() {
         <Banners />
         <Location />
       </main>
-
+      <Footer />
     </div>
   );
 }

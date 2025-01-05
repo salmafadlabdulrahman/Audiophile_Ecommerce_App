@@ -9,10 +9,14 @@ import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
+import { useAuth, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
+  const { userId } = useAuth();
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
+  //console.log(userId)
+  //<p>{userId ? `Logged in as: ${userId}` : "Not logged in"}</p>
 
   return (
     <>
@@ -57,7 +61,7 @@ const Navbar = () => {
             <NavItems textSize=".9em" gap="2rem" />
           </div>
 
-          <div className="hidden">
+          <div className={` ${userId ? "block" : "hidden"} flex items-center gap-5`}>
             <Image
               src={"/assets/shared/desktop/icon-cart.svg"}
               alt="cart icon"
@@ -66,16 +70,24 @@ const Navbar = () => {
               onClick={() => setCartMenu((prev) => !prev)}
               className="cursor-pointer"
             />
+            <UserButton afterSwitchSessionUrl="/" />
           </div>
 
-          <div className="flex items-center gap-3">
-            <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black"> 
-              Sign In
-            </Button>
-            <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
-              Sign Up
-            </Button>
-          </div>
+          {!userId && (
+            <div className="flex items-center gap-3">
+              <Link href={"/sign-in"}>
+                <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
+                  Sign In
+                </Button>
+              </Link>
+
+              <Link href={"/sign-up"}>
+                <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
       <div className="pre-lg:hidden">
