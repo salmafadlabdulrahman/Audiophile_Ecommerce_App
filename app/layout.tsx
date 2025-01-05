@@ -9,25 +9,17 @@ export const metadata: Metadata = {
     "We offer the best tech gadgets for you and in the highest quality.",
 };
 
-interface PageProps {
-  // Define your props here
-  title?: string;
-  meta?: {
-    description: string;
-    keywords: string[];
-  };
-  // Add other properties as needed
-}
-
 export default function RootLayout({
-  children,
-  pageProps
+  children
 }: Readonly<{
   children: React.ReactNode;
-  pageProps: PageProps
 }>) {
+  const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || '';
+  if (!clerkKey) {
+    console.error("Clerk publishable key is missing.");
+  }
   return (
-    <ClerkProvider {...pageProps} publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ""}>
+    <ClerkProvider publishableKey={clerkKey}>
       <html lang="en">
         <body className={``}>
           <header>
