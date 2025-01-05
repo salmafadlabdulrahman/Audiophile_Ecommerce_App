@@ -13,15 +13,3 @@ const page = () => {
 };
 
 export default page;
-
-
-/*<div className="border w-[50%]">
-        <Image
-          src={"/assets/home/mobile/old-image-hero.jpg"}
-          alt="headphones"
-          width={20}
-          height={20}
-          unoptimized
-          className="object-contain h-full "
-        />
-      </div> */

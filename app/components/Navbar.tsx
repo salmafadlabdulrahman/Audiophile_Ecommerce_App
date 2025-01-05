@@ -15,8 +15,6 @@ const Navbar = () => {
   const { userId } = useAuth();
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
-  //console.log(userId)
-  //<p>{userId ? `Logged in as: ${userId}` : "Not logged in"}</p>
 
   return (
     <>
