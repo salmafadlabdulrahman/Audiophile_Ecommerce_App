@@ -9,12 +9,11 @@ import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
-import { useAuth, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
-  const { userId } = useAuth();
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
+  const [userId, setUserId] = useState(false)
 
   return (
     <>
@@ -59,7 +58,7 @@ const Navbar = () => {
             <NavItems textSize=".9em" gap="2rem" />
           </div>
 
-          <div className={` ${userId ? "block" : "hidden"} flex items-center gap-5`}>
+          <div className={`${userId ? "block" : "hidden"} flex items-center gap-5`}>
             <Image
               src={"/assets/shared/desktop/icon-cart.svg"}
               alt="cart icon"
@@ -68,7 +67,6 @@ const Navbar = () => {
               onClick={() => setCartMenu((prev) => !prev)}
               className="cursor-pointer"
             />
-            <UserButton afterSwitchSessionUrl="/" />
           </div>
 
           {!userId && (
