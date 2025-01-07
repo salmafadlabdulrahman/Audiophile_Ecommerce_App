@@ -44,7 +44,7 @@ const Navbar = () => {
               onClick={() => setOpenMenu((prev) => !prev)}
             />
 
-            <Link href={"/"}>
+            <Link href={"/"} className="pr-3">
               <Image
                 src={"/assets/shared/desktop/logo.svg"}
                 alt="logo"
@@ -70,7 +70,7 @@ const Navbar = () => {
           </div>
 
           {!userId && (
-            <div className="flex items-center gap-3">
+            <div className="items-center gap-3 hidden post-sm:flex">
               <Link href={"/sign-in"}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign In
@@ -96,7 +96,13 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
+                <div className="flex gap-5 justify-end pr-[2em] mt-[1em] post-sm:hidden">
+                  <Link href={"/sign-in"} className="underline">Sign In</Link>
+                  <Link href={"/sign-up"} className="underline">Sign Up</Link>
+                </div>
+
                 <div className="flex-col-center pre-lg:hidden">
+                  
                   {products.map((product, i) => (
                     <CategoryCard
                       category={product.category}

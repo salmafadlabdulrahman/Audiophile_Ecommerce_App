@@ -13,10 +13,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  /*const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
-  if (!clerkKey) {
-    console.error("Clerk publishable key is missing.");
-  }*/
   return (
     <html lang="en">
       <body className={``}>
