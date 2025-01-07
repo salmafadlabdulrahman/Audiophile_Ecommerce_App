@@ -3,6 +3,9 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Location from "./components/Location";
 import Products from "./components/Products";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import "../lib/fontawesome";
+import "../styles/globals.css";
 
 export default function Home() {
   return (
