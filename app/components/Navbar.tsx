@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
-  const [userId, setUserId] = useState(false)
+  const [userId, setUserId] = useState(false);
 
   return (
     <>
@@ -58,7 +58,9 @@ const Navbar = () => {
             <NavItems textSize=".9em" gap="2rem" />
           </div>
 
-          <div className={`${userId ? "block" : "hidden"} flex items-center gap-5`}>
+          <div
+            className={`${userId ? "block" : "hidden"} flex items-center gap-5`}
+          >
             <Image
               src={"/assets/shared/desktop/icon-cart.svg"}
               alt="cart icon"
@@ -71,13 +73,13 @@ const Navbar = () => {
 
           {!userId && (
             <div className="items-center gap-3 hidden post-sm:flex">
-              <Link href={"/sign-in"}>
+              <Link href={"/sign-in"} onClick={() => setOpenMenu(false)}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign In
                 </Button>
               </Link>
 
-              <Link href={"/sign-up"}>
+              <Link href={"/sign-up"} onClick={() => setOpenMenu(false)}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign Up
                 </Button>
@@ -97,12 +99,15 @@ const Navbar = () => {
                 exit={{ opacity: 0 }}
               >
                 <div className="flex gap-5 justify-end pr-[2em] mt-[1em] post-sm:hidden">
-                  <Link href={"/sign-in"} className="underline">Sign In</Link>
-                  <Link href={"/sign-up"} className="underline">Sign Up</Link>
+                  <Link href={"/sign-in"} className="underline">
+                    Sign In
+                  </Link>
+                  <Link href={"/sign-up"} className="underline">
+                    Sign Up
+                  </Link>
                 </div>
 
                 <div className="flex-col-center pre-lg:hidden">
-                  
                   {products.map((product, i) => (
                     <CategoryCard
                       category={product.category}
