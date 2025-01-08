@@ -35,10 +35,8 @@ const page = () => {
   }
 
   return (
-    <div className="md:flex md:h-screen">
-      <div className="w-[50%] hidden md:block">
-        {" "}
-        {/*w-[50%] border hidden md:block h-[100%] */}
+    <div className="md:flex md:h-screen relative">
+      <div className="lg:w-[50%] w-full">
         <Image
           src={"/assets/home/intro.jpg"}
           alt="intro pic"
@@ -48,8 +46,8 @@ const page = () => {
           unoptimized
         />
       </div>
-      <div className="bg-black md:w-[50%] w-[80%] max-w-[450px] md:max-w-[50%] m-auto md:m-0 px-6 py-[2em] rounded-xl md:rounded-none mt-[5em]">
-        <div className="md:flex md:flex-col md:justify-center md:mt-[6em] md:max-w-[500px] m-auto">
+      <div className="bg-black md:w-[50%] w-[80%] max-w-[450px] md:max-w-[50%] m-auto lg:h-full px-6 py-[2em] rounded-xl lg:rounded-none lg:static absolute top-[150px] left-0 right-0">
+        <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto">
           <p className="text-white font-bold text-[1.3em] text-center">
             Create an account <br />
             <span className="text-lightGray text-[.7em] font-semibold">
@@ -102,9 +100,3 @@ const page = () => {
 };
 
 export default page;
-
-{
-  /*border w-[80%] m-auto */
-}
-
-/*m-auto w-[80%] max-w-[450px] mt-[5em] bg-black px-6 py-5 rounded-xl pt-[2em] md:h-screen md:rounded-none md:m-0 md:w-[50%] md:max-w-[50%] */
