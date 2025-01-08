@@ -73,13 +73,13 @@ const Navbar = () => {
 
           {!userId && (
             <div className="items-center gap-3 hidden post-sm:flex">
-              <Link href={"/sign-in"} onClick={() => setOpenMenu(false)}>
+              <Link href={"/sign-in"} onClick={() => setOpenMenu((prev) => !prev)}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign In
                 </Button>
               </Link>
 
-              <Link href={"/sign-up"} onClick={() => setOpenMenu(false)}>
+              <Link href={"/sign-up"} onClick={() => setOpenMenu((prev) => !prev)}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign Up
                 </Button>
