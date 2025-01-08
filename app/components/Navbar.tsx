@@ -73,13 +73,13 @@ const Navbar = () => {
 
           {!userId && (
             <div className="items-center gap-3 hidden post-sm:flex">
-              <Link href={"/sign-in"} onClick={() => setOpenMenu((prev) => !prev)}>
+              <Link href={"/sign-in"}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign In
                 </Button>
               </Link>
 
-              <Link href={"/sign-up"} onClick={() => setOpenMenu((prev) => !prev)}>
+              <Link href={"/sign-up"}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
                   Sign Up
                 </Button>
@@ -99,10 +99,10 @@ const Navbar = () => {
                 exit={{ opacity: 0 }}
               >
                 <div className="flex gap-5 justify-end pr-[2em] mt-[1em] post-sm:hidden">
-                  <Link href={"/sign-in"} className="underline">
+                  <Link href={"/sign-in"} className="underline" onClick={() => setOpenMenu((prev) => !prev)}>
                     Sign In
                   </Link>
-                  <Link href={"/sign-up"} className="underline">
+                  <Link href={"/sign-up"} className="underline" onClick={() => setOpenMenu((prev) => !prev)}>
                     Sign Up
                   </Link>
                 </div>
