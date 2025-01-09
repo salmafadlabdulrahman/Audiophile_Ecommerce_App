@@ -9,11 +9,22 @@ import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
+import { account } from "@/lib/appwrite";
+
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
-  const [userId, setUserId] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState("");
+
+  const getUser = async () => {
+    const user = await account.get();
+    if(user.status) {
+      setLoggedInUser(user.$id)
+    }
+    console.log(user)
+  }
+  getUser()
 
   return (
     <>
@@ -59,7 +70,7 @@ const Navbar = () => {
           </div>
 
           <div
-            className={`${userId ? "block" : "hidden"} flex items-center gap-5`}
+            className={`${loggedInUser ? "block" : "hidden"} flex items-center gap-5`}
           >
             <Image
               src={"/assets/shared/desktop/icon-cart.svg"}
@@ -71,7 +82,7 @@ const Navbar = () => {
             />
           </div>
 
-          {!userId && (
+          {!loggedInUser && (
             <div className="items-center gap-3 hidden post-sm:flex">
               <Link href={"/sign-in"}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">

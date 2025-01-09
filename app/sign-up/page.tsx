@@ -15,15 +15,24 @@ import {
 import { Input } from "@/components/ui/input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import Image from "next/image";
 import SideImg from "../components/SideImg";
+import { useEffect, useState } from "react";
+import { account, ID } from "../../lib/appwrite";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email().min(2).max(50),
-  password: z.string().min(5).max(15),
+  password: z.string().min(8).max(265),
 });
 
-const page = () => {
+type LoggedInUser = {
+  email: string;
+  id: string;
+} | null;
+
+const SignUpPage = () => {
+  const [loggedInUser, setLoggedInUser] = useState<LoggedInUser>(null);
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,17 +41,54 @@ const page = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+  //console.log(account.get())
+
+  const login = async (email: string, password: string) => {
+    try {
+      const session = await account.createEmailPasswordSession(email, password);
+      const user = await account.get();
+      setLoggedInUser({
+        id: user.$id, // ID of the newly created user
+        email: user.email, // Email of the user
+      });
+      console.log("User logged in:", user);
+      router.push("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+  /*useEffect(() => {
+    if (!router.isReady) {
+      console.log("Router is not ready yet.");
+    }
+  }, [router.isReady]);*/
+  /*const logout = async () => {
+    await account.deleteSession("current");
+    setLoggedInUser(null);
+  };
+  logout()*/
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const user = await account.create(
+        ID.unique(),
+        values.email,
+        values.password
+      );
+      await login(values.email, values.password);
+      console.log("User registered and logged in:", values);
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
 
   return (
     <div className="lg:flex h-screen relative">
       <SideImg />
       <div className="bg-black md:w-[50%] w-[80%] max-w-[450px] md:max-w-[50%] m-auto lg:h-full px-6 py-[2em] rounded-xl lg:rounded-none lg:static absolute xs:top-20 sm:top-[150px] left-0 right-0">
         <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto xl:mt-[13em] ">
+          {loggedInUser && <p>This user is logged in:{loggedInUser.email}</p>}
           <p className="text-white font-bold text-[1.3em] text-center">
             Create an account <br />
             <span className="text-lightGray text-[.7em] font-semibold">
@@ -59,7 +105,9 @@ const page = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white tracking-wide">Email</FormLabel>
+                      <FormLabel className="text-white tracking-wide">
+                        Email
+                      </FormLabel>
                       <FormControl>
                         <Input
                           placeholder="name@example.com"
@@ -76,7 +124,9 @@ const page = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem className="mt-[.5em]">
-                      <FormLabel className="text-white tracking-wide">Password</FormLabel>
+                      <FormLabel className="text-white tracking-wide">
+                        Password
+                      </FormLabel>
                       <FormControl>
                         <Input
                           placeholder=""
@@ -112,4 +162,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignUpPage;
