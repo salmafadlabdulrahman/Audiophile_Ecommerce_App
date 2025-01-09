@@ -9,15 +9,17 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import Image from "next/image";
+import SideImg from "../components/SideImg";
 
 const formSchema = z.object({
   email: z.string().email().min(2).max(50),
+  password: z.string().min(5).max(15),
 });
 
 const page = () => {
@@ -25,6 +27,7 @@ const page = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
+      password: "",
     },
   });
 
@@ -36,22 +39,13 @@ const page = () => {
 
   return (
     <div className="lg:flex h-screen relative">
-      <div className="lg:w-[50%] w-full h-full">
-        <Image
-          src={"/assets/home/intro.jpg"}
-          alt="intro pic"
-          width={60}
-          height={60}
-          className="object-cover w-full h-full"
-          unoptimized
-        />
-      </div>
+      <SideImg />
       <div className="bg-black md:w-[50%] w-[80%] max-w-[450px] md:max-w-[50%] m-auto lg:h-full px-6 py-[2em] rounded-xl lg:rounded-none lg:static absolute xs:top-20 sm:top-[150px] left-0 right-0">
-        <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto">
+        <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto xl:mt-[13em] ">
           <p className="text-white font-bold text-[1.3em] text-center">
-            Create an account <br />
+            Log in to your account <br />
             <span className="text-lightGray text-[.7em] font-semibold">
-              Enter your email below to create your account
+              Enter your email and password below to log in.
             </span>
           </p>
 
@@ -64,9 +58,27 @@ const page = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
+                      <FormLabel className="text-white tracking-wide">Email</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="name@example.com"
+                          {...field}
+                          className=" border-[#3d3d3d] placeholder:text-lightGray text-white"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem className="mt-[.5em]">
+                      <FormLabel className="text-white tracking-wide">Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder=""
                           {...field}
                           className=" border-[#3d3d3d] placeholder:text-lightGray text-white"
                         />
