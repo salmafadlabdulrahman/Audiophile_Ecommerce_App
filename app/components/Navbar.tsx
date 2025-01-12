@@ -9,7 +9,7 @@ import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
-import { account } from "@/lib/appwrite";
+//import { account } from "@/lib/appwrite";
 
 
 const Navbar = () => {
@@ -17,14 +17,14 @@ const Navbar = () => {
   const [cartMenu, setCartMenu] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState("");
 
-  const getUser = async () => {
+  /*const getUser = async () => {
     const user = await account.get();
     if(user.status) {
       setLoggedInUser(user.$id)
     }
     console.log(user)
   }
-  getUser()
+  getUser()*/
 
   return (
     <>

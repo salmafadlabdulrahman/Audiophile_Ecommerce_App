@@ -16,22 +16,26 @@ import { Input } from "@/components/ui/input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import SideImg from "../components/SideImg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { account, ID } from "../../lib/appwrite";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const formSchema = z.object({
   email: z.string().email().min(2).max(50),
   password: z.string().min(8).max(265),
 });
 
-type LoggedInUser = {
-  email: string;
-  id: string;
-} | null;
+type LoggedInUser =
+  | {
+      email: string;
+      id: string;
+    }
+  | null;
 
 const SignUpPage = () => {
   const [loggedInUser, setLoggedInUser] = useState<LoggedInUser>(null);
+  //const [userData, setUserData] = useState<Models.User<any> | null>(null);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,8 +44,6 @@ const SignUpPage = () => {
       password: "",
     },
   });
-
-  //console.log(account.get())
 
   const login = async (email: string, password: string) => {
     try {
@@ -58,17 +60,6 @@ const SignUpPage = () => {
     }
   };
 
-  /*useEffect(() => {
-    if (!router.isReady) {
-      console.log("Router is not ready yet.");
-    }
-  }, [router.isReady]);*/
-  /*const logout = async () => {
-    await account.deleteSession("current");
-    setLoggedInUser(null);
-  };
-  logout()*/
-
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const user = await account.create(
@@ -83,12 +74,20 @@ const SignUpPage = () => {
     }
   };
 
+  /*const logout = async () => {
+    await account.deleteSession("current");
+    setLoggedInUser(null);
+  };
+  logout()
+  console.log(account.get());*/
+  //console.log(loggedInUser);
+
   return (
     <div className="lg:flex h-screen relative">
       <SideImg />
       <div className="bg-black md:w-[50%] w-[80%] max-w-[450px] md:max-w-[50%] m-auto lg:h-full px-6 py-[2em] rounded-xl lg:rounded-none lg:static absolute xs:top-20 sm:top-[150px] left-0 right-0">
         <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto xl:mt-[13em] ">
-          {loggedInUser && <p>This user is logged in:{loggedInUser.email}</p>}
+          {/*loggedInUser && <p>This user is logged in:{loggedInUser.email}</p>*/}
           <p className="text-white font-bold text-[1.3em] text-center">
             Create an account <br />
             <span className="text-lightGray text-[.7em] font-semibold">
@@ -163,3 +162,23 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+/*Cookies.set('user', JSON.stringify(loggedInUser), { 
+      expires: 7, // Cookie expires in 7 days
+      sameSite: 'strict',
+      path: "/"
+    });
+    console.log("Cookie set successfully!");*/
+
+
+    /*const login = async (email: string, password: string) => {
+    try {
+      const session = await account.createSession(email, password);
+      console.log("Logged in successfully:", session);
+      return session
+      
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error
+    }
+  };*/ 

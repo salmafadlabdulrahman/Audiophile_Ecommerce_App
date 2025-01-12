@@ -21,6 +21,7 @@ import Image from "next/image";
 import ConfirmedCard from "../components/ConfirmedCard";
 import MiniProductCard from "../components/MiniProductCard";
 import Footer from "../components/Footer";
+import ProtectedRoutes from "../ProtectedRoutes";
 
 const page = () => {
   const [paymentMethod, setPaymentMethod] = useState("option-one");
@@ -111,8 +112,9 @@ const page = () => {
     setOpenMenu(true);
     console.log(values);
   }
+
   return (
-    <>
+    <ProtectedRoutes>
       <div className="p-6 bg-gray">
         <div className="lg:pl-[5%]">
           <GoBackLink />
@@ -381,7 +383,7 @@ const page = () => {
         </div>
       )}
       <Footer />
-    </>
+    </ProtectedRoutes>
   );
 };
 

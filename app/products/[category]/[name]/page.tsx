@@ -3,6 +3,7 @@ import GoBackLink from "@/app/components/GoBackLink";
 import Location from "@/app/components/Location";
 import ProductAmount from "@/app/components/ProductAmount";
 import Products from "@/app/components/Products";
+import ProtectedRoutes from "@/app/ProtectedRoutes";
 import { Button } from "@/components/ui/button";
 import data from "@/products.json";
 import Image from "next/image";
@@ -15,7 +16,7 @@ const page = async ({ params }: { params: ParamsType }) => {
   const item = data.products.filter((item) => item.slug === name)[0];
 
   return (
-    <>
+    <ProtectedRoutes>
       <div className="w-[95%] m-auto mt-[2em]">
         <GoBackLink />
         <div className="pt-[2em] flex flex-col items-center text-center md:flex-row md:gap-4 lg:gap-8 lg:max-w-[85%] xl:max-w-[75%] lg:m-auto lg:items-start">
@@ -146,7 +147,7 @@ const page = async ({ params }: { params: ParamsType }) => {
         </div>
       </div>
       <Footer />
-    </>
+    </ProtectedRoutes>
   );
 };
 
