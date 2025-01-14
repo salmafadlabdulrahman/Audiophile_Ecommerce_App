@@ -14,7 +14,7 @@ export interface ProductProps {
   categoryImage: Images;
   name: string;
   description: string;
-  id:number;
+  id: number;
   category: string;
   slug: string;
 }
@@ -24,3 +24,8 @@ export interface Images {
   tablet: string;
   desktop: string;
 }
+
+export type LoggedInUser = {
+  email: string;
+  id: string;
+} | null;

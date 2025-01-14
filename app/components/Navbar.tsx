@@ -2,29 +2,37 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { products } from "../../data";
 import CategoryCard from "./CategoryCard";
 import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
-//import { account } from "@/lib/appwrite";
-
+import { account } from "@/lib/appwrite";
+import { LoggedInUser } from "@/index";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState<LoggedInUser>(null);
+  const router = useRouter();
 
-  /*const getUser = async () => {
-    const user = await account.get();
-    if(user.status) {
-      setLoggedInUser(user.$id)
+
+  const getCurrentUser = async () => {
+    if (await account.get()) {
+      let user = await account.get();
+      setLoggedInUser({
+        id: user.$id,
+        email: user.email,
+      });
     }
-    console.log(user)
-  }
-  getUser()*/
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [router]);
 
   return (
     <>
@@ -70,7 +78,9 @@ const Navbar = () => {
           </div>
 
           <div
-            className={`${loggedInUser ? "block" : "hidden"} flex items-center gap-5`}
+            className={`${
+              loggedInUser ? "block" : "hidden"
+            } flex items-center gap-5`}
           >
             <Image
               src={"/assets/shared/desktop/icon-cart.svg"}
@@ -109,14 +119,24 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <div className="flex gap-5 justify-end pr-[2em] mt-[1em] post-sm:hidden">
-                  <Link href={"/sign-in"} className="underline" onClick={() => setOpenMenu((prev) => !prev)}>
-                    Sign In
-                  </Link>
-                  <Link href={"/sign-up"} className="underline" onClick={() => setOpenMenu((prev) => !prev)}>
-                    Sign Up
-                  </Link>
-                </div>
+                {!loggedInUser && (
+                  <div className="flex gap-5 justify-end pr-[2em] mt-[1em] post-sm:hidden">
+                    <Link
+                      href={"/sign-in"}
+                      className="underline"
+                      onClick={() => setOpenMenu((prev) => !prev)}
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      href={"/sign-up"}
+                      className="underline"
+                      onClick={() => setOpenMenu((prev) => !prev)}
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                )}
 
                 <div className="flex-col-center pre-lg:hidden">
                   {products.map((product, i) => (

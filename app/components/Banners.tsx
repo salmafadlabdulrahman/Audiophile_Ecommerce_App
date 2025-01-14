@@ -13,7 +13,7 @@ const Banners = () => {
               alt="circles pattern"
               width={50}
               height={50}
-              className="z-[20px] absolute w-[900px]"
+              className="z-[20px] absolute w-[900px] h-auto"
             />
             <div>
               <Image
@@ -21,7 +21,7 @@ const Banners = () => {
                 alt="speaker"
                 width={200}
                 height={200}
-                className="relative z-[550px] m-auto top-[40px] lg:w-[400px] lg:top-[71px] object-contain"
+                className="relative z-[550px] m-auto top-[40px] lg:w-[400px] lg:h-auto lg:top-[71px] object-contain"
                 unoptimized
               />
             </div>
@@ -52,7 +52,7 @@ const Banners = () => {
             alt="gray speaker"
             width={100}
             height={100}
-            className="w-full object-contain rounded-xl lg:hidden"
+            className="w-full h-full object-contain rounded-xl lg:hidden"
             unoptimized
           />
 
@@ -61,7 +61,7 @@ const Banners = () => {
             alt="gray speaker"
             width={100}
             height={100}
-            className=" hidden lg:block w-full object-contain rounded-xl"
+            className=" hidden lg:block w-full h-full object-contain rounded-xl"
             unoptimized
           />
 
@@ -81,7 +81,7 @@ const Banners = () => {
             alt="wireless headphones"
             width={100}
             height={100}
-            className="xs:w-full sm:w-[50%] rounded-lg border object-cover"
+            className="xs:w-full lg:h-full sm:w-[50%] rounded-lg border object-cover"
             unoptimized
           />
           <div className="bg-gray rounded-lg pl-3 md:pl-[3em] py-5 w-full flex flex-col justify-center xs:mt-3 sm:mt-0">

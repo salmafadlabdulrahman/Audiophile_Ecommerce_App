@@ -19,23 +19,15 @@ import SideImg from "../components/SideImg";
 import { useState } from "react";
 import { account, ID } from "../../lib/appwrite";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { LoggedInUser } from "@/index";
 
 const formSchema = z.object({
   email: z.string().email().min(2).max(50),
   password: z.string().min(8).max(265),
 });
 
-type LoggedInUser =
-  | {
-      email: string;
-      id: string;
-    }
-  | null;
-
 const SignUpPage = () => {
   const [loggedInUser, setLoggedInUser] = useState<LoggedInUser>(null);
-  //const [userData, setUserData] = useState<Models.User<any> | null>(null);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,11 +39,11 @@ const SignUpPage = () => {
 
   const login = async (email: string, password: string) => {
     try {
-      const session = await account.createEmailPasswordSession(email, password);
+      await account.createEmailPasswordSession(email, password);
       const user = await account.get();
       setLoggedInUser({
-        id: user.$id, // ID of the newly created user
-        email: user.email, // Email of the user
+        id: user.$id,
+        email: user.email,
       });
       console.log("User logged in:", user);
       router.push("/");
@@ -87,7 +79,6 @@ const SignUpPage = () => {
       <SideImg />
       <div className="bg-black md:w-[50%] w-[80%] max-w-[450px] md:max-w-[50%] m-auto lg:h-full px-6 py-[2em] rounded-xl lg:rounded-none lg:static absolute xs:top-20 sm:top-[150px] left-0 right-0">
         <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto xl:mt-[13em] ">
-          {/*loggedInUser && <p>This user is logged in:{loggedInUser.email}</p>*/}
           <p className="text-white font-bold text-[1.3em] text-center">
             Create an account <br />
             <span className="text-lightGray text-[.7em] font-semibold">
@@ -162,23 +153,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-
-/*Cookies.set('user', JSON.stringify(loggedInUser), { 
-      expires: 7, // Cookie expires in 7 days
-      sameSite: 'strict',
-      path: "/"
-    });
-    console.log("Cookie set successfully!");*/
-
-
-    /*const login = async (email: string, password: string) => {
-    try {
-      const session = await account.createSession(email, password);
-      console.log("Logged in successfully:", session);
-      return session
-      
-    } catch (error) {
-      console.error("Login failed:", error);
-      throw error
-    }
-  };*/ 
