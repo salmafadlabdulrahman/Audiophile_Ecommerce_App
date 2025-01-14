@@ -26,6 +26,14 @@ export interface Images {
 }
 
 export type LoggedInUser = {
+  //might be deleted later
+  username: string;
   email: string;
   id: string;
+} | null;
+
+export type User = {
+  id: string;
+  email: string;
+  name: string;
 } | null;

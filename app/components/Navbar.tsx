@@ -12,27 +12,33 @@ import { Button } from "@/components/ui/button";
 import { account } from "@/lib/appwrite";
 import { LoggedInUser } from "@/index";
 import { useRouter } from "next/navigation";
+import { useUser } from "../context/UserContext";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState<LoggedInUser>(null);
   const router = useRouter();
+  const {user} = useUser()
 
 
-  const getCurrentUser = async () => {
+  /*const getCurrentUser = async () => {
     if (await account.get()) {
       let user = await account.get();
       setLoggedInUser({
         id: user.$id,
         email: user.email,
       });
+    } else {
+      setLoggedInUser(null)
     }
   };
 
   useEffect(() => {
     getCurrentUser();
-  }, [router]);
+  }, [router]);*/
+
+  //console.log(loggedInUser)
 
   return (
     <>
@@ -79,9 +85,9 @@ const Navbar = () => {
 
           <div
             className={`${
-              loggedInUser ? "block" : "hidden"
+              user ? "block" : "hidden"
             } flex items-center gap-5`}
-          >
+          > {/*loggedInUser */}
             <Image
               src={"/assets/shared/desktop/icon-cart.svg"}
               alt="cart icon"
@@ -92,7 +98,7 @@ const Navbar = () => {
             />
           </div>
 
-          {!loggedInUser && (
+          {!user && (
             <div className="items-center gap-3 hidden post-sm:flex">
               <Link href={"/sign-in"}>
                 <Button className="bg-white text-black font-semibold tracking-wide hover:bg-white hover:text-black">
@@ -106,8 +112,14 @@ const Navbar = () => {
                 </Button>
               </Link>
             </div>
-          )}
+          )} {/*loggedInUser */}
         </div>
+
+        {user && (
+          <div>
+            <div className="bg-orange text-black w-[40px] h-[40px]">Sa</div>
+          </div>
+        )}
       </nav>
       <div className="pre-lg:hidden">
         <AnimatePresence>
@@ -119,7 +131,7 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                {!loggedInUser && (
+                {!user && (
                   <div className="flex gap-5 justify-end pr-[2em] mt-[1em] post-sm:hidden">
                     <Link
                       href={"/sign-in"}
