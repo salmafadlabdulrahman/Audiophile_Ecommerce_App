@@ -2,43 +2,20 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { products } from "../../data";
 import CategoryCard from "./CategoryCard";
 import NavItems from "./NavItems";
 import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
-import { account } from "@/lib/appwrite";
-import { LoggedInUser } from "@/index";
-import { useRouter } from "next/navigation";
 import { useUser } from "../context/UserContext";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState<LoggedInUser>(null);
-  const router = useRouter();
-  const {user} = useUser()
-
-
-  /*const getCurrentUser = async () => {
-    if (await account.get()) {
-      let user = await account.get();
-      setLoggedInUser({
-        id: user.$id,
-        email: user.email,
-      });
-    } else {
-      setLoggedInUser(null)
-    }
-  };
-
-  useEffect(() => {
-    getCurrentUser();
-  }, [router]);*/
-
-  //console.log(loggedInUser)
+  const [accountManagementMenu, setAccountManagementMenu] = useState(false);
+  const { user } = useUser();
 
   return (
     <>
@@ -78,26 +55,51 @@ const Navbar = () => {
               />
             </Link>
           </div>
-
           <div className="hidden pre-lg:block">
             <NavItems textSize=".9em" gap="2rem" />
           </div>
-
-          <div
-            className={`${
-              user ? "block" : "hidden"
-            } flex items-center gap-5`}
-          > {/*loggedInUser */}
-            <Image
-              src={"/assets/shared/desktop/icon-cart.svg"}
-              alt="cart icon"
-              width={25}
-              height={25}
-              onClick={() => setCartMenu((prev) => !prev)}
-              className="cursor-pointer"
-            />
+          <div className="flex items-center gap-6">
+            <div
+              className={`${user ? "block" : "hidden"} flex items-center gap-5`}
+            >
+              {" "}
+              <Image
+                src={"/assets/shared/desktop/icon-cart.svg"}
+                alt="cart icon"
+                width={25}
+                height={25}
+                onClick={() => {
+                  setCartMenu((prev) => !prev);
+                  setAccountManagementMenu(false);
+                }}
+                className="cursor-pointer"
+              />
+            </div>
+            <div>
+              {user && (
+                <div>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setAccountManagementMenu((prev) => !prev);
+                      setCartMenu(false);
+                    }}
+                  >
+                    <div className="bg-white font-bold text-black w-[37px] h-[37px] flex flex-col justify-center items-center rounded-full">
+                      {user.name.slice(0, 2)}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            {accountManagementMenu && (
+              <div className="absolute right-[30px] lg:right-[17%] rounded-lg top-[80px] w-[50%] max-w-[250px] bg-white p-3">
+                <div>
+                  <p>Logout</p>
+                </div>
+              </div>
+            )}
           </div>
-
           {!user && (
             <div className="items-center gap-3 hidden post-sm:flex">
               <Link href={"/sign-in"}>
@@ -112,14 +114,8 @@ const Navbar = () => {
                 </Button>
               </Link>
             </div>
-          )} {/*loggedInUser */}
+          )}{" "}
         </div>
-
-        {user && (
-          <div>
-            <div className="bg-orange text-black w-[40px] h-[40px]">Sa</div>
-          </div>
-        )}
       </nav>
       <div className="pre-lg:hidden">
         <AnimatePresence>

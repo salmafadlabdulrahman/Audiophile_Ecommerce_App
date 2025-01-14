@@ -11,7 +11,7 @@ interface CartListProps {
 const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
   return (
     <>
-      <div className="bg-white absolute top-[20px] z-[999999] right-[20px] lg:right-[17%] w-[90%] max-w-[350px] px-8 py-5 rounded-lg ">
+      <div className="bg-white absolute top-[20px] z-[999999] right-[30px] md:right-[60px] lg:right-[10%] xl:right-[20%] w-[90%] max-w-[350px] px-8 py-5 rounded-lg ">
         <div className="flex items-center justify-between">
           <p className="uppercase font-bold tracking-wide text-[1.2em]">
             Cart (3)
