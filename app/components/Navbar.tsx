@@ -10,7 +10,6 @@ import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
 import { useUser } from "../context/UserContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);

@@ -1,7 +1,8 @@
 "use client";
 
-import { LoggedInUser, User } from "@/index";
+import { User } from "@/index";
 import { account } from "@/lib/appwrite";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface UserContextType {
@@ -16,6 +17,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User>(null);
+  const router = useRouter()
 
   // Fetch the user when the app starts
   useEffect(() => {
@@ -40,6 +42,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       await account.deleteSession("current");
       setUser(null); // Clear user state
+      router.push("/")
     } catch (error) {
       console.error("Logout failed:", error);
     }
