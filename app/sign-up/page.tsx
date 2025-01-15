@@ -61,8 +61,8 @@ const SignUpPage = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       //check if the user already exists:
-      const users = await databases.listDocuments("users", "Users", [
-        Query.equal("email", values.email),
+      const users = await databases.listDocuments(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string, process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string, [
+        Query.equal("email", values.email), //process.env.NEXT_PUBLIC_APPWRITE_PROJECT
       ]);
       if (users.documents.length > 0) {
         setErrMsg(
@@ -77,7 +77,7 @@ const SignUpPage = () => {
         values.name
       );
 
-      await databases.createDocument("users", "Users", ID.unique(), {
+      await databases.createDocument(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string, process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string, ID.unique(), {
         email: values.email,
       });
       await login(values.email, values.password, values.name);
