@@ -29,8 +29,7 @@ const formSchema = z.object({
 });
 
 const SignUpPage = () => {
-  const router = useRouter();
-  const { setUser } = useUser();
+  const { login } = useUser();
   const [errMsg, setErrMsg] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -42,28 +41,17 @@ const SignUpPage = () => {
     },
   });
 
-  const login = async (email: string, password: string, name: string) => {
-    try {
-      await account.createEmailPasswordSession(email, password);
-      const user = await account.get();
-      setUser({
-        id: user.$id,
-        email: user.email,
-        name: user.name,
-      });
-      console.log("User logged in:", user);
-      router.push("/");
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       //check if the user already exists:
-      const users = await databases.listDocuments(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string, process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string, [
-        Query.equal("email", values.email), //process.env.NEXT_PUBLIC_APPWRITE_PROJECT
-      ]);
+      const users = await databases.listDocuments(
+        process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string,
+        [
+          Query.equal("email", values.email), //process.env.NEXT_PUBLIC_APPWRITE_PROJECT
+        ]
+      );
       if (users.documents.length > 0) {
         setErrMsg(
           "An account with this email already exists. Please log in instead."
@@ -77,10 +65,15 @@ const SignUpPage = () => {
         values.name
       );
 
-      await databases.createDocument(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string, process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string, ID.unique(), {
-        email: values.email,
-      });
-      await login(values.email, values.password, values.name);
+      await databases.createDocument(
+        process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string,
+        ID.unique(),
+        {
+          email: values.email,
+        }
+      );
+      login(values.email, values.password, values.name);
     } catch (error) {
       console.log(error);
       setErrMsg("Registeration Failed");
@@ -160,6 +153,7 @@ const SignUpPage = () => {
                         <FormControl>
                           <Input
                             placeholder="choose a strong password"
+                            type="password"
                             {...field}
                             className=" border-[#3d3d3d] placeholder:text-lightGray text-white"
                           />

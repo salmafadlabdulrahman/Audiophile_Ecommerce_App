@@ -53,7 +53,6 @@ const SignInPage = () => {
       console.log(error);
       setErrMsg("User doesn't exist. Please sign up.");
     }
-    console.log(values);
   }
 
   return (
@@ -109,7 +108,8 @@ const SignInPage = () => {
                         </FormLabel>
                         <FormControl>
                           <Input
-                            placeholder=""
+                            placeholder="choose a strong password"
+                            type="password"
                             {...field}
                             className=" border-[#3d3d3d] placeholder:text-lightGray text-white"
                           />

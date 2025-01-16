@@ -9,6 +9,7 @@ interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;
   logout: () => Promise<void>;
+  login: (email:string, password:string, name:string,) => void
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -38,6 +39,22 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchUser();
   }, []);
 
+  const login = async (email: string, password: string, name: string) => {
+    try {
+      await account.createEmailPasswordSession(email, password);
+      const user = await account.get();
+      setUser({
+        id: user.$id,
+        email: user.email,
+        name: user.name,
+      });
+      console.log("User logged in:", user);
+      router.push("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
   const logout = async () => {
     try {
       await account.deleteSession("current");
@@ -49,7 +66,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, logout }}>
+    <UserContext.Provider value={{ user, setUser, logout, login }}>
       {children}
     </UserContext.Provider>
   );
