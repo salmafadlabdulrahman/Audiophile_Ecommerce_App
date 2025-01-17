@@ -17,7 +17,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import SideImg from "../components/SideImg";
 import { account, databases, ID, Query } from "../../lib/appwrite";
-import { useRouter } from "next/navigation";
 import { useUser } from "../context/UserContext";
 import Link from "next/link";
 import { useState } from "react";
@@ -49,7 +48,7 @@ const SignUpPage = () => {
         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
         process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID as string,
         [
-          Query.equal("email", values.email), //process.env.NEXT_PUBLIC_APPWRITE_PROJECT
+          Query.equal("email", values.email), 
         ]
       );
       if (users.documents.length > 0) {
