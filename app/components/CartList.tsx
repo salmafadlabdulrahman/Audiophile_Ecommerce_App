@@ -33,7 +33,7 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
                 <span className="text-darkGray font-bold">$ 4,500</span>
               </p>
 
-              <ProductAmount />
+              {/*<ProductAmount id={} />*/}
             </div>
           </div>
         </div>
