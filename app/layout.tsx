@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import UserProvider from "./context/UserContext";
+import CartProvider from "./context/CartContext";
 
 export const metadata: Metadata = {
   title: "Audiophile",
@@ -10,20 +11,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <UserProvider>
-      <html lang="en">
-        <body className={``}>
-          <header>
-            <Navbar />
-          </header>
-          <main>{children}</main>
-        </body>
-      </html>
+      <CartProvider>
+        <html lang="en">
+          <body>
+            <header>
+              <Navbar />
+            </header>
+            <main>{children}</main>
+          </body>
+        </html>
+      </CartProvider>
     </UserProvider>
   );
 }

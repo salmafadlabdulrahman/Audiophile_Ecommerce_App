@@ -1,3 +1,4 @@
+import AddProduct from "@/app/components/AddProduct";
 import Footer from "@/app/components/Footer";
 import GoBackLink from "@/app/components/GoBackLink";
 import Location from "@/app/components/Location";
@@ -5,7 +6,6 @@ import ProductAmount from "@/app/components/ProductAmount";
 import Products from "@/app/components/Products";
 import ProtectedRoutes from "@/app/ProtectedRoutes";
 import { Button } from "@/components/ui/button";
-import { databases, Query } from "@/lib/appwrite";
 import data from "@/products.json";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,6 @@ export type ParamsType = Promise<{ name: string }>;
 const Page = async ({ params }: { params: ParamsType }) => {
   const { name } = await params;
   const item = data.products.filter((item) => item.slug === name)[0];
-
 
   return (
     <ProtectedRoutes>
@@ -47,12 +46,8 @@ const Page = async ({ params }: { params: ParamsType }) => {
             </p>
             <div className="xs:flex-col sm:flex-row  flex items-center justify-between mt-[2em] md:mt-[4em] lg:mt-[6em] xl:mt-[10em]">
               <p className="font-semibold text-[1.3em]">$ {item.price}</p>
-              <div className=""> {/*flex items-center gap-6 xs:mt-[1.5em] sm:mt-0 */}
-                <ProductAmount id={item.id.toString()} name={item.name} price={item.price}  />
-                {/*<Button className="uppercase font-semibold tracking-wider h-[40px]">
-                  Add To Cart
-                </Button>*/}
-              </div>
+
+              <AddProduct id={item.id.toString()} price={item.price} name={item.name} />
             </div>
           </div>
         </div>
@@ -155,13 +150,6 @@ const Page = async ({ params }: { params: ParamsType }) => {
 
 export default Page;
 
-
-/*const addToCart = async (userId:string, product: {id:string; name: string; price: number }, amount:number) => {
-    try {
-      const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string;
-      const cartsCollectionId = process.env.NEXT_PUBLIC_APPWRITE_CARTS_COLLECTION_ID as string;
-    } catch (error) {
-      
-    }
-
-  } */
+/*{/*<div>
+                <ProductAmount id={item.id.toString()} name={item.name} price={item.price} addToCartBtn={true}  />
+              </div>*/

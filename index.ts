@@ -37,3 +37,29 @@ export type User = {
   email: string;
   name: string;
 } | null;
+
+export type Product = {
+  productId: string;
+  name: string;
+  price: number;
+  amount: number;
+};
+
+export interface ProductAmountProps {
+  id: string;
+  name: string;
+  price: number;
+  addToCartBtn?: boolean;
+  productAmount?: number;
+}
+
+export interface Cart {
+  items: Product[];
+  total: number;
+}
+
+export interface ProductPageProps {
+  id: string;
+  name: string;
+  price: number;
+}

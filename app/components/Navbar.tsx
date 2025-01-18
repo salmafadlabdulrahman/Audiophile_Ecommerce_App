@@ -10,12 +10,42 @@ import Link from "next/link";
 import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
 import { useUser } from "../context/UserContext";
+import { databases, Query } from "@/lib/appwrite";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const [accountManagementMenu, setAccountManagementMenu] = useState(false);
   const { user, logout } = useUser();
+  const [cartProducts, setCartProducts] = useState<
+    { productId: string; name: string; amount: number; price: number }[]
+  >([]);
+
+  const getProduct = async () => {
+    try {
+      if (!user?.id) {
+        console.log("user doesn't exist");
+        return;
+      }
+      const cart = await databases.listDocuments(
+        process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_APPWRITE_CARTS_COLLECTION_ID as string,
+        [Query.equal("userId", user.id)]
+      );
+
+      if (cart.total === 0) {
+        setCartProducts([]);
+        return;
+      }
+
+      const cartItems = cart.documents[0].items.map((item: string) =>
+        JSON.parse(item)
+      );
+      setCartProducts(cartItems);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -71,6 +101,7 @@ const Navbar = () => {
                 onClick={() => {
                   setCartMenu((prev) => !prev);
                   setAccountManagementMenu(false);
+                  getProduct();
                 }}
                 className="cursor-pointer"
               />
@@ -191,7 +222,11 @@ const Navbar = () => {
 
       <div className="relative">
         {cartMenu && (
-          <CartList setOpenMenu={setOpenMenu} setCartMenu={setCartMenu} />
+          <CartList
+            setOpenMenu={setOpenMenu}
+            setCartMenu={setCartMenu}
+            products={cartProducts}
+          />
         )}
       </div>
     </>
