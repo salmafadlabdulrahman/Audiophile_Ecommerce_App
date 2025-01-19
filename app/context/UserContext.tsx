@@ -9,7 +9,8 @@ interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;
   logout: () => Promise<void>;
-  login: (email:string, password:string, name:string,) => void
+  login: (email:string, password:string, name:string,) => void;
+  loading: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -18,6 +19,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter()
 
   // Fetch the user when the app starts
@@ -33,6 +35,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         });
       } catch (error) {
         setUser(null); // If no valid session, set user to null
+      } finally {
+        setLoading(false); // Set loading to false after fetching
       }
     };
 
@@ -66,7 +70,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, logout, login }}>
+    <UserContext.Provider value={{ user, setUser, logout, login, loading }}>
       {children}
     </UserContext.Provider>
   );

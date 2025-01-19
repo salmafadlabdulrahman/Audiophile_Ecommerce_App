@@ -6,9 +6,11 @@ import { useUser } from "../context/UserContext";
 import { ProductPageProps } from "@/index";
 import { databases } from "@/lib/appwrite";
 import { calcTotal, checkUserCart } from "@/functions";
+import { useCart } from "../context/CartContext";
 
 const AddProduct = ({ id, name, price }: ProductPageProps) => {
   const { user } = useUser();
+  const { setCart, setProductsCount } = useCart();
   const [amount, setAmount] = useState(1);
 
   const addToCart = async (product: ProductPageProps, amount: number) => {
@@ -48,6 +50,40 @@ const AddProduct = ({ id, name, price }: ProductPageProps) => {
             })
           );
         }
+
+        setCart((prevCart) => {
+          // Create a new cart array
+          const updatedCart = [...prevCart];
+
+          // Check if the item already exists in the cart
+          const existingItemIndex = updatedCart.findIndex(
+            (item) => item.productId === product.id
+          );
+
+          if (existingItemIndex > -1) {
+            // If it exists, update the amount
+            updatedCart[existingItemIndex].amount += amount;
+          } else {
+            // If it doesn't exist, add the new item
+            updatedCart.push({
+              productId: product.id,
+              name: product.name,
+              amount,
+              price: product.price,
+            });
+          }
+
+          // Calculate the new cart count
+          const cartCount = updatedCart.reduce(
+            (total: number, item: any) => total + item.amount,
+            0
+          );
+
+          // Update the number of products
+          setProductsCount(cartCount);
+
+          return updatedCart; // Return the updated cart
+        });
 
         //4. recalculate the total
         let total = calcTotal(cart.items);

@@ -2,7 +2,6 @@ import AddProduct from "@/app/components/AddProduct";
 import Footer from "@/app/components/Footer";
 import GoBackLink from "@/app/components/GoBackLink";
 import Location from "@/app/components/Location";
-import ProductAmount from "@/app/components/ProductAmount";
 import Products from "@/app/components/Products";
 import ProtectedRoutes from "@/app/ProtectedRoutes";
 import { Button } from "@/components/ui/button";
@@ -149,7 +148,3 @@ const Page = async ({ params }: { params: ParamsType }) => {
 };
 
 export default Page;
-
-/*{/*<div>
-                <ProductAmount id={item.id.toString()} name={item.name} price={item.price} addToCartBtn={true}  />
-              </div>*/

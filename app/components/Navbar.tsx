@@ -11,15 +11,16 @@ import CartList from "./CartList";
 import { Button } from "@/components/ui/button";
 import { useUser } from "../context/UserContext";
 import { databases, Query } from "@/lib/appwrite";
+import { useCart } from "../context/CartContext";
+import { Product } from "@/index";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const [accountManagementMenu, setAccountManagementMenu] = useState(false);
   const { user, logout } = useUser();
-  const [cartProducts, setCartProducts] = useState<
-    { productId: string; name: string; amount: number; price: number }[]
-  >([]);
+  const { productsCount } = useCart();
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   const getProduct = async () => {
     try {
@@ -46,6 +47,7 @@ const Navbar = () => {
       console.log(error);
     }
   };
+
 
   return (
     <>
@@ -89,6 +91,11 @@ const Navbar = () => {
             <NavItems textSize=".9em" gap="2rem" />
           </div>
           <div className="flex items-center gap-6">
+            <div className={`${user && productsCount > 0 ? "block" : "hidden"}`}>
+              <p className="bg-orange text-white rounded-full w-[25px] h-[25px] text-center absolute top-[25px] right-[70px] xl:right-[19%] ">
+                {productsCount}
+              </p>
+            </div>
             <div
               className={`${user ? "block" : "hidden"} flex items-center gap-5`}
             >
@@ -96,8 +103,8 @@ const Navbar = () => {
               <Image
                 src={"/assets/shared/desktop/icon-cart.svg"}
                 alt="cart icon"
-                width={25}
-                height={25}
+                width={30}
+                height={30}
                 onClick={() => {
                   setCartMenu((prev) => !prev);
                   setAccountManagementMenu(false);

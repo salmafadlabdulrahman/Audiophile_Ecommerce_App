@@ -74,3 +74,11 @@ export const checkUserCart = async (userId: string) => {
     console.log("checking for cart failed");
   }
 };
+
+
+export const formatNumber = (amount: number): string => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
+};

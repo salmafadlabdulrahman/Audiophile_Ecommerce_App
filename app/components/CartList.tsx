@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import data from "@/products.json";
 import { Product } from "@/index";
 import { useCart } from "../context/CartContext";
+import { formatNumber } from "@/functions";
 
 interface CartListProps {
   setOpenMenu: (val: boolean) => void;
@@ -71,7 +72,7 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
 
         <div className="flex mt-[3em] items-center justify-between">
           <p className="uppercase text-darkGray">Total</p>
-          <p className="font-semibold text-[1.1em]">$ {total}</p>
+          <p className="font-semibold text-[1.1em]">{formatNumber(total)}</p>
         </div>
         <Link href={"/checkout"}>
           <Button

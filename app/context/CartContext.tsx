@@ -1,9 +1,10 @@
 "use client";
 
-import { calcTotal, updateProductAmount } from "@/functions";
+import { updateProductAmount } from "@/functions";
 import { Product } from "@/index";
 import { databases, Query } from "@/lib/appwrite";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useUser } from "./UserContext";
 
 //The data below will be shared through all components
 interface CartContextProps {
@@ -13,6 +14,9 @@ interface CartContextProps {
   incrementItem: (userId: string, productId: string) => Promise<void>;
   decrementItem: (userId: string, productId: string) => Promise<void>;
   total: number;
+  cartCount: number;
+  productsCount: number;
+  setProductsCount: (val: number) => void;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -22,6 +26,9 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cart, setCart] = useState<Product[]>([]);
   const [total, setTotal] = useState<number>(0);
+  const { user, loading } = useUser();
+  const [productsCount, setProductsCount] = useState<number>(0);
+  const [cartCount, setCartCount] = useState<number>(0);
 
   //calc the total whenever the cart is updated
   useEffect(() => {
@@ -30,7 +37,22 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       0
     );
     setTotal(newTotal);
-  }, [cart]);
+  }, [productsCount, cart]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      if (loading === false) {
+        if (!user?.id) {
+          return;
+        } else {
+          await fetchCart(user?.id);
+          console.log("cart is fetched");
+        }
+      }
+    };
+    getProducts();
+  }, [loading]);
+
 
   //Fetch cart
   const fetchCart = async (userId: string) => {
@@ -45,12 +67,19 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         [Query.equal("userId", userId)]
       );
 
-      let cart;
 
       if (carts.total > 0) {
-        cart = carts.documents[0];
-        const parsedCart = cart.items.map((item: string) => JSON.parse(item));
-        setCart(parsedCart);
+        const cartItems = carts.documents[0].items.map((item: string) =>
+          JSON.parse(item)
+        );
+        setCart(cartItems);
+        const cartCount = cartItems.reduce(
+          (total: any, product: any) => total + product.amount,
+          0
+        );
+        setProductsCount(cartCount);
+      } else {
+        setCart([]);
       }
     } catch (error) {
       console.error("Error fetching cart:", error);
@@ -59,13 +88,25 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const incrementItem = async (userId: string, productId: string) => {
     try {
-      setCart((prevCart) =>
-        prevCart.map((item) =>
+      setCart((prevCart) => {
+        const updatedCart = prevCart.map((item) =>
           item.productId === productId
             ? { ...item, amount: item.amount + 1 }
             : item
-        )
-      );
+        );
+  
+        // Calculate the new cart count
+        const cartCount = updatedCart.reduce(
+          (total: number, product: any) => total + product.amount,
+          0
+        );
+  
+        // Update the number of products
+        setProductsCount(cartCount);
+  
+        return updatedCart; // Return the updated cart
+      });
+      //update the cart amount on appwrite
       await updateProductAmount(userId, productId, true);
     } catch (error) {
       console.error("Error incrementing product amount:", error);
@@ -74,17 +115,26 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const decrementItem = async (userId: string, productId: string) => {
     try {
-      setCart(
-        (prevCart) =>
-          prevCart
-            .map((item) =>
-              item.productId === productId
-                ? { ...item, amount: item.amount - 1 }
-                : item
-            )
-            .filter((item) => item.amount > 0)
-      );
-
+      setCart((prevCart) => {
+        const updatedCart = prevCart
+          .map((item) =>
+            item.productId === productId
+              ? { ...item, amount: item.amount - 1 }
+              : item
+          )
+          .filter((item) => item.amount > 0); // Remove items with amount <= 0
+  
+        // Calculate the new cart count
+        const cartCount = updatedCart.reduce(
+          (total: number, product: any) => total + product.amount,
+          0
+        );
+  
+        // Update the number of products
+        setProductsCount(cartCount);
+  
+        return updatedCart; // Return the updated cart
+      });
       await updateProductAmount(userId, productId, false);
     } catch (error) {
       console.error("Error decrementing product amount:", error);
@@ -93,7 +143,17 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <CartContext.Provider
-      value={{ cart, setCart, fetchCart, incrementItem, decrementItem, total }}
+      value={{
+        cart,
+        setCart,
+        fetchCart,
+        incrementItem,
+        decrementItem,
+        total,
+        cartCount,
+        productsCount,
+        setProductsCount,
+      }}
     >
       {children}
     </CartContext.Provider>
