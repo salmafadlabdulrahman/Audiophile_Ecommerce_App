@@ -79,9 +79,9 @@ const SignUpPage = () => {
   return (
     <div>
       {" "}
-      <div className="lg:flex h-full min-h-screen">
+      <div className="lg:flex lg:h-full h-screen lg:min-h-screen lg:p-0 pb-[3em]">
         <SideImg />
-        <div className="bg-black w-[80%] md:w-[50%] lg:w-[50%] px-6 py-[2em] absolute lg:static xs:top-[200px] sm:top-[150px] left-0 right-0 m-auto lg:m-0 rounded-xl lg:rounded-none">
+        <div className="bg-black w-[80%] md:w-[50%] lg:w-[50%] px-6 py-[2em] my-[4em] m-auto lg:m-0 rounded-xl lg:rounded-none">
           {" "}
           <div className="md:flex md:flex-col md:justify-center lg:mt-[6em] md:max-w-[500px] m-auto xl:mt-[13em] ">
             <p className="text-white font-bold text-[1.3em] text-center">

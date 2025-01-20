@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const SideImg = () => {
   return (
-    <div className="lg:w-[50%] w-full xs:h-screen lg:h-auto"> 
+    <div className="lg:w-[50%] w-full h-screen xs:h-screen lg:h-auto hidden lg:block "> 
       <Image
         src={"/assets/home/intro.jpg"}
         alt="intro pic"
