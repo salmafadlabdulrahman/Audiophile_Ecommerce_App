@@ -1,6 +1,5 @@
-<br />
-    ![screencapture-audiophile-ecommerce-website-ebon-vercel-app-2023-11-22-20_45_07](https://github.com/user-attachments/assets/4e4e7bdf-603d-4026-a7ad-bde7f79d4ac0)  
-<br />
+
+![screencapture-audiophile-ecommerce-website-ebon-vercel-app-2023-11-22-20_45_07](https://github.com/user-attachments/assets/a08ccb6c-deed-49f0-a81c-86e11ae5b921)
 
   <div>
     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
