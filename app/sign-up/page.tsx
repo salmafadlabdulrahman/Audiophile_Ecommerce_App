@@ -160,19 +160,11 @@ const SignUpPage = () => {
                   />
                   <Button
                     type="submit"
-                    className="w-full mt-[.7em] bg-white text-black font-semibold hover:bg-[#d4d4d4]"
+                    className="w-full mt-[2em] bg-white text-black font-semibold hover:bg-[#d4d4d4]"
                   >
                     Sign Up
                   </Button>
-                  <div className="mt-[1em] text-center">
-                    <p className="uppercase text-lightGray font-semibold text-[.8em]">
-                      Or continue with
-                    </p>
-                    <Button className="mt-[1em] w-full bg-black border border-[#3d3d3d] font-bold">
-                      <FontAwesomeIcon icon={faGithub} size="2x" />
-                      GitHub
-                    </Button>
-                  </div>
+                  
                   <div className="mt-[1em] flex items-center justify-center ">
                     <Link href="/sign-in" className="font-semibold">
                       <p className="text-white">
