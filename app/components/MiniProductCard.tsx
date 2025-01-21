@@ -19,7 +19,7 @@ const MiniProductCard = ({ name, price, amount }: Product) => {
           className="rounded-lg"
         />
 
-        <div className="">
+        <div>
           <p className="font-bold">{name?.split(" ")[0]}</p>
           <p className="text-darkGray font-bold">$ {price}</p>
         </div>

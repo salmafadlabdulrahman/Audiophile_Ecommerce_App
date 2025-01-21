@@ -31,43 +31,15 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
     }
   }, []);
 
-  /*const removeAllProducts = async () => {
-    const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string;
-    const cartsCollectionId = process.env
-      .NEXT_PUBLIC_APPWRITE_CARTS_COLLECTION_ID as string;
-    try {
-      const carts = await databases.listDocuments(
-        databaseId,
-        cartsCollectionId
-      );
-
-      if (carts.total === 0) {
-        console.log("Cart is empty");
-        return;
-      }
-
-      const deletePromises = carts.documents.map((doc) =>
-        databases.deleteDocument(databaseId, cartsCollectionId, doc?.$id)
-      );
-      await Promise.all(deletePromises);
-      setProductsCount(0);
-      setCart([]);
-      console.log("All items have been removed");
-    } catch (error) {
-      console.log("deleteing items failed", error);
-    }
-  };*/
-
   const handleRemovingProducts = async () => {
     try {
       await removeAllProducts();
       setProductsCount(0);
       setCart([]);
-
     } catch (error) {
       console.log("deleteing items failed", error);
     }
-  }
+  };
   return (
     <>
       <div className="bg-white absolute top-[20px] z-[999999] right-[30px] md:right-[60px] lg:right-[10%] xl:right-[20%] w-[90%] max-w-[350px] px-8 py-5 rounded-lg ">
@@ -103,6 +75,10 @@ const CartList = ({ setOpenMenu, setCartMenu }: CartListProps) => {
                       height={70}
                       className="rounded-lg"
                     />
+                    <div>
+                      <p className="font-bold">{product.name?.split(" ")[0]}</p>
+                      <p className="text-darkGray font-bold">$ {product.price}</p>
+                    </div>
                     <ProductAmount
                       id={product.productId}
                       name={product.name}
