@@ -22,11 +22,14 @@ import ConfirmedCard from "../components/ConfirmedCard";
 import MiniProductCard from "../components/MiniProductCard";
 import Footer from "../components/Footer";
 import ProtectedRoutes from "../ProtectedRoutes";
+import { useCart } from "../context/CartContext";
+import { formatNumber, removeAllProducts } from "@/functions";
 
 const page = () => {
   const [paymentMethod, setPaymentMethod] = useState("option-one");
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const { cart, total, setProductsCount, setCart, setTotal } = useCart();
 
   const formSchema = z.object({
     name: z
@@ -106,8 +109,6 @@ const page = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     setOrderConfirmed(true);
     setOpenMenu(true);
     console.log(values);
@@ -333,14 +334,30 @@ const page = () => {
               </p>
 
               <div className="mt-[1em]">
-                <MiniProductCard />
-                <MiniProductCard />
+                {cart.length > 0 ? (
+                  cart.map((item, i) => (
+                    <div key={i}>
+                      <MiniProductCard
+                        name={item.name}
+                        price={item.price}
+                        amount={item.amount}
+                        productId={item.productId}
+                      />{" "}
+                    </div>
+                  ))
+                ) : (
+                  <div>
+                    <h1 className="font-bold text-[20px]">
+                      No items in the cart.
+                    </h1>
+                  </div>
+                )}
               </div>
 
               <div className="mt-[2em]">
                 <p className="flex justify-between ">
                   <span className="summary-text">Total</span>{" "}
-                  <span className=" summary-amounts">$ 23,698</span>
+                  <span className=" summary-amounts">{formatNumber(total)}</span>
                 </p>
                 <p className="flex justify-between ">
                   <span className="summary-text">Shipping</span>{" "}
@@ -348,18 +365,21 @@ const page = () => {
                 </p>
                 <p className="flex justify-between ">
                   <span className="summary-text">Vat (included)</span>{" "}
-                  <span className=" summary-amounts">$ 4,739.6</span>
+                  <span className=" summary-amounts">$ 700</span>
                 </p>
 
                 <p className="flex justify-between mt-[1.5em]">
                   <span className="summary-text">Grand Total</span>{" "}
-                  <span className=" summary-amounts">$ 28487.6</span>
+                  <span className=" summary-amounts">
+                    {formatNumber(total + 700 + 50)}
+                  </span>
                 </p>
               </div>
 
               <div className="mt-[3em] ">
                 <Button
                   type="submit"
+                  disabled={cart.length > 0 ? false : true}
                   className="bg-orange text-white w-full uppercase text-[1em] font-semibold tracking-wide"
                 >
                   Continue & Pay
@@ -377,6 +397,10 @@ const page = () => {
             onClick={() => {
               setOpenMenu(false);
               setOrderConfirmed(false);
+              setCart([]);
+              setTotal(0);
+              removeAllProducts();
+              setProductsCount(0);
             }}
           ></div>
           <ConfirmedCard />
@@ -388,41 +412,3 @@ const page = () => {
 };
 
 export default page;
-
-/*<div className="flex justify-between">
-                  <div className="flex gap-6">
-                    <Image
-                      src={"/assets/cart/image-xx59-headphones.jpg"}
-                      alt="headphones"
-                      width={50}
-                      height={50}
-                      unoptimized
-                      className="w-[60px] rounded-lg"
-                    />
-
-                    <div>
-                      <p className="font-bold">ZX9</p>
-                      <p className="text-darkGray font-bold">$ 4.500</p>
-                    </div>
-                  </div>
-                  <p className="text-darkGray font-bold">x3</p>
-                </div>
-
-                <div className="flex justify-between my-5">
-                  <div className="flex gap-6">
-                    <Image
-                      src={"/assets/cart/image-xx59-headphones.jpg"}
-                      alt="headphones"
-                      width={50}
-                      height={50}
-                      unoptimized
-                      className="w-[60px] rounded-lg"
-                    />
-
-                    <div>
-                      <p className="font-bold">ZX9</p>
-                      <p className="text-darkGray font-bold">$ 4.500</p>
-                    </div>
-                  </div>
-                  <p className="text-darkGray font-bold">x3</p>
-                </div> */

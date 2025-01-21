@@ -82,3 +82,31 @@ export const formatNumber = (amount: number): string => {
     currency: "USD",
   }).format(amount);
 };
+
+
+export const removeAllProducts = async () => {
+  const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string;
+  const cartsCollectionId = process.env
+    .NEXT_PUBLIC_APPWRITE_CARTS_COLLECTION_ID as string;
+  try {
+    const carts = await databases.listDocuments(
+      databaseId,
+      cartsCollectionId
+    );
+
+    if (carts.total === 0) {
+      console.log("Cart is empty");
+      return;
+    }
+
+    const deletePromises = carts.documents.map((doc) =>
+      databases.deleteDocument(databaseId, cartsCollectionId, doc?.$id)
+    );
+    await Promise.all(deletePromises);
+    //setProductsCount(0);
+    //setCart([]);
+    console.log("All items have been removed");
+  } catch (error) {
+    console.log("deleteing items failed", error);
+  }
+};

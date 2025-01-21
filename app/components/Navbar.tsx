@@ -19,7 +19,7 @@ const Navbar = () => {
   const [cartMenu, setCartMenu] = useState(false);
   const [accountManagementMenu, setAccountManagementMenu] = useState(false);
   const { user, logout } = useUser();
-  const { productsCount } = useCart();
+  const { productsCount, cart } = useCart();
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   const getProduct = async () => {
@@ -47,7 +47,6 @@ const Navbar = () => {
       console.log(error);
     }
   };
-
 
   return (
     <>

@@ -14,6 +14,7 @@ interface CartContextProps {
   incrementItem: (userId: string, productId: string) => Promise<void>;
   decrementItem: (userId: string, productId: string) => Promise<void>;
   total: number;
+  setTotal: (val:number) => void;
   cartCount: number;
   productsCount: number;
   setProductsCount: (val: number) => void;
@@ -150,6 +151,7 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         incrementItem,
         decrementItem,
         total,
+        setTotal,
         cartCount,
         productsCount,
         setProductsCount,
